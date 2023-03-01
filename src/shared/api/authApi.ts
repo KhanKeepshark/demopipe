@@ -23,13 +23,9 @@ export const authApi = {
     const refreshToken = getRefreshToken();
 
     return api
-      .post<{ access_token: string; refresh_token?: string }>(
-        "auth/oauth/token",
-        null,
-        {
-          params: { grant_type: "refresh_token", refresh_token: refreshToken },
-        },
-      )
+      .post<{ access_token: string; refresh_token?: string }>("refresh", null, {
+        params: { grant_type: "refresh_token", refresh_token: refreshToken },
+      })
       .catch((err: AxiosError) => {
         removeAuthToken();
         removeRefreshToken();
