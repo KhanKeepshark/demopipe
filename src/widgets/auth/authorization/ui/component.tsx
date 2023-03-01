@@ -71,11 +71,7 @@ export const AuthorizationWidget: FC = () => {
             />
           )}
         />
-        <Button
-          gradient
-          className="mt-6"
-          onClick={() => handleSubmit(onSubmit)()}
-        >
+        <Button className="mt-6" onClick={() => handleSubmit(onSubmit)()}>
           АВТОРИЗОВАТЬСЯ
         </Button>
         <AntButton

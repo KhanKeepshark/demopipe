@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { Timeline } from "antd";
 import { Button } from "@/shared/components";
@@ -64,9 +64,7 @@ export const TimelineBlock: FC = () => {
           ]}
         />
         <div className="flex mt-10 gap-6">
-          <Button className="py-4" gradient>
-            Пройти Онлайн Тест
-          </Button>
+          <Button className="py-4">Пройти Онлайн Тест</Button>
           <Button className="py-4 bg-brand-aqua rounded-full">
             Получить Консультацию
           </Button>

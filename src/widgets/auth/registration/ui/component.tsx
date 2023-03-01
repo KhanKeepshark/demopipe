@@ -107,11 +107,7 @@ export const RegistrationWidget: FC = () => {
             />
           )}
         />
-        <Button
-          gradient
-          className="mt-6"
-          onClick={() => handleSubmit(onSubmit)()}
-        >
+        <Button className="mt-6" onClick={() => handleSubmit(onSubmit)()}>
           ЗАРЕГИСТРИРОВАТЬСЯ
         </Button>
         <AntButton

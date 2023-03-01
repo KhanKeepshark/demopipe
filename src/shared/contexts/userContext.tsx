@@ -1,6 +1,5 @@
+import type { FC, ReactElement } from "react";
 import {
-  FC,
-  ReactElement,
   createContext,
   useCallback,
   useEffect,
@@ -14,6 +13,7 @@ import {
   removeAuthToken,
   subscribeToAuthToken,
 } from "../utils/api";
+// import { otherApi } from "../api/otherApi";
 
 interface UserProfile {
   role: "patient" | "doctor";

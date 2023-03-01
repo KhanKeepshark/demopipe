@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Carousel1, Carousel2, Carousel3 } from "@/shared/assets/images";
 import { Button, Carousel } from "@/shared/components";
 
@@ -39,9 +39,7 @@ export const CarouselBlock: FC = () => {
               вида деятельности
             </div>
           </div>
-          <Button className="mt-10" gradient>
-            ПРОЙТИ ТЕСТ
-          </Button>
+          <Button className="mt-10">ПРОЙТИ ТЕСТ</Button>
         </div>
       </div>
       <div className="relative">
@@ -59,9 +57,7 @@ export const CarouselBlock: FC = () => {
               Получите профессиональную консультацию врача реабилитолога
             </div>
           </div>
-          <Button className="mt-10" gradient>
-            ОСТАВИТЬ ЗАЯВКУ
-          </Button>
+          <Button className="mt-10">ОСТАВИТЬ ЗАЯВКУ</Button>
         </div>
       </div>
     </Carousel>

@@ -1,11 +1,11 @@
 import { Button, FileUpload, Input, InputPhone } from "@/shared/components";
 import { DatePicker } from "antd";
 import type { FC } from "react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import dayjs from "dayjs";
-import { UserContext } from "@/shared/contexts";
-import { useQuery } from "react-query";
-import { otherApi } from "@/shared/api/otherApi";
+// import { UserContext } from "@/shared/contexts";
+// import { useQuery } from "react-query";
+// import { otherApi } from "@/shared/api/otherApi";
 
 const InputsData = [
   {
@@ -40,24 +40,24 @@ const InputsData = [
 
 export const AccountPageWidget: FC = () => {
   const [phone, setPhone] = useState("");
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
   // TODO: change when Egor fix rests
-  const { data: doctorData } = useQuery(
-    ["getDoctorDataById"],
-    () => otherApi.getDoctorById(user?.role_id ?? "").then((res) => res.data),
-    {
-      enabled: user?.role === "doctor",
-    },
-  );
+  // const { data: doctorData } = useQuery(
+  //   ["getDoctorDataById"],
+  //   () => otherApi.getDoctorById(user?.role_id ?? "").then((res) => res.data),
+  //   {
+  //     enabled: user?.role === "doctor",
+  //   },
+  // );
 
-  const { data: patientData } = useQuery(
-    ["getPatientDataById"],
-    () =>
-      otherApi.getDoctorPatientId(user?.role_id ?? "").then((res) => res.data),
-    {
-      enabled: user?.role === "patient",
-    },
-  );
+  // const { data: patientData } = useQuery(
+  //   ["getPatientDataById"],
+  //   () =>
+  //     otherApi.getDoctorPatientId(user?.role_id ?? "").then((res) => res.data),
+  //   {
+  //     enabled: user?.role === "patient",
+  //   },
+  // );
 
   return (
     <div>

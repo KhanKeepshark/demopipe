@@ -1,6 +1,6 @@
 import { DoctorMain } from "@/shared/assets/images";
 import { Button } from "@/shared/components";
-import { FC } from "react";
+import type { FC } from "react";
 
 export const DoctorBlock: FC = () => {
   return (
@@ -45,7 +45,7 @@ export const DoctorBlock: FC = () => {
             </span>
           </div>
           <div className="mt-10 flex justify-center">
-            <Button className="w-fit rounded-2xl px-12 py-4" gradient>
+            <Button className="w-fit rounded-2xl px-12 py-4">
               Получить Консультацию
             </Button>
           </div>
