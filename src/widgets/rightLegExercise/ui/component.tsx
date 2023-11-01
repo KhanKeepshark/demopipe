@@ -172,7 +172,7 @@ export const RightLegExercise = () => {
           exerciseCount={exerciseCount}
           repeatTarget={repeatTarget}
           play={play}
-          playVideo={playVideo}
+          setPlay={setPlay}
         />
       </div>
     </div>
