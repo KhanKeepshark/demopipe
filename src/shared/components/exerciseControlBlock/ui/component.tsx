@@ -6,7 +6,7 @@ import { IoPlayForward } from "react-icons/io5";
 
 export const ExerciseOneControlBlock: FC<ExerciseOneControlBlockModel> = ({
   play,
-  playVideo,
+  setPlay,
   exerciseCount,
   repeatTarget,
 }) => {
@@ -30,7 +30,7 @@ export const ExerciseOneControlBlock: FC<ExerciseOneControlBlockModel> = ({
           type="primary"
           danger={play}
           className="text-white bg-green-400 h-8 py-1 px-2 rounded"
-          onClick={() => playVideo()}
+          onClick={() => setPlay(!play)}
         >
           {play ? "STOP" : "START"}
         </Button>

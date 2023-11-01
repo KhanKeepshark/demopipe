@@ -1,6 +1,8 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ExerciseOneControlBlockModel {
   play: boolean;
-  playVideo: () => void;
+  setPlay: Dispatch<SetStateAction<boolean>>;
   exerciseCount: number;
   repeatTarget: number;
 }

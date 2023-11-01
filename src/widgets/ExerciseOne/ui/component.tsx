@@ -112,7 +112,7 @@ export const ExerciseOne: FC<ExerciseOneProps> = ({ finish }) => {
 
   useEffect(() => {
     if (bodyAngle > 178 && !play && landmarks) {
-      if (poseCheck) {
+      if (poseCheck && !firstOn) {
         playVideo();
       }
     }
@@ -176,7 +176,7 @@ export const ExerciseOne: FC<ExerciseOneProps> = ({ finish }) => {
           exerciseCount={exerciseCount}
           repeatTarget={repeatTarget}
           play={play}
-          playVideo={playVideo}
+          setPlay={setPlay}
         />
       </div>
     </div>
