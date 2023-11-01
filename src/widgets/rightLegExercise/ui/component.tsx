@@ -58,10 +58,10 @@ export const RightLegExercise = () => {
   useEffect(() => {
     if (play && exerciseCount !== repeatTarget && poseCheck) {
       if (legPercent > 90) {
-        setExerciseСycle((prev) => (prev = true));
+        setExerciseСycle((cycle) => (cycle = true));
       } else if (legPercent < 10 && exerciseСycle) {
         setExerciseCount((prev) => prev + 1);
-        setExerciseСycle((prev) => (prev = false));
+        setExerciseСycle((cycle) => (cycle = false));
       }
     } else if (exerciseCount === repeatTarget) {
       setPlay(false);
@@ -129,16 +129,12 @@ export const RightLegExercise = () => {
     }
   }, [seconds === 0]);
 
-  console.log(landmarks?.[0].x);
-  console.log(landmarks?.[0].y);
-  console.log(bodyAngle);
-
   // check head position
   useEffect(() => {
     if (landmarks && landmarks?.[0].x < 0.3 && landmarks?.[0].y > 0.7) {
-      setPoseCheck((prev) => (prev = true));
+      setPoseCheck((pose) => (pose = true));
     } else {
-      setPoseCheck((prev) => (prev = false));
+      setPoseCheck((pose) => (pose = false));
     }
   }, [landmarks]);
 
