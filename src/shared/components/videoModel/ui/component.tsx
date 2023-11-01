@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from "react";
-import { VideoModelProps } from "../models/VideoModelProps";
+import { VideoModelProps } from "../models/videoModelProps";
 import clsx from "clsx";
 import { IoChevronDownCircle, IoCloseCircle } from "react-icons/io5";
 
