@@ -50,7 +50,7 @@ export const ExerciseOne: FC<ExerciseOneProps> = ({ finish }) => {
         setAngle: setBodyAngle,
         invisible: true,
         getlandmarks: {
-          landmarks: [0],
+          landmarks: [0, 30],
           setLandmarks,
         },
       },
@@ -136,7 +136,12 @@ export const ExerciseOne: FC<ExerciseOneProps> = ({ finish }) => {
 
   // check head position
   useEffect(() => {
-    if (landmarks && landmarks?.[0].x > 0.7 && landmarks?.[0].y > 0.7) {
+    if (
+      landmarks &&
+      landmarks?.[0].x > 0.7 &&
+      landmarks?.[0].y > 0.7 &&
+      landmarks?.[1].y < 1
+    ) {
       setPoseCheck((prev) => (prev = true));
     } else {
       setPoseCheck((prev) => (prev = false));
@@ -160,7 +165,7 @@ export const ExerciseOne: FC<ExerciseOneProps> = ({ finish }) => {
         />
         <Notification
           title="Подсказка"
-          description="Для начала работы программы примите позу как на 3d модели сверху"
+          description="Для начала работы программы примите позу как на 3d модели сверху, вдоль фиолетовой линии"
           duration={10}
         />
         <ProgressBar
@@ -172,6 +177,7 @@ export const ExerciseOne: FC<ExerciseOneProps> = ({ finish }) => {
         {seconds > 0 && play && (
           <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
         )}
+        <div className="absolute h-1 w-full bg-indigo-500 bottom-20" />
         <ExerciseOneControlBlock
           exerciseCount={exerciseCount}
           repeatTarget={repeatTarget}

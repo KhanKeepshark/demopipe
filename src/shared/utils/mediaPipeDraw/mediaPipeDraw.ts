@@ -70,6 +70,16 @@ const predictWebcam = ({
           canvasCtx!.save();
           canvasCtx!.clearRect(0, 0, videoWidth, videoHeight);
           for (const landmark of result.landmarks) {
+            drawingUtils.drawLandmarks(landmark, {
+              color: "orange",
+              radius: (data) =>
+                DrawingUtils.lerp(data.from?.z as number, -0.15, 0.1, 5, 1),
+            });
+            drawingUtils.drawConnectors(
+              landmark,
+              PoseLandmarker.POSE_CONNECTIONS,
+              { color: "white" },
+            );
             bodyPartLists?.map((bodyPart) => {
               if (!bodyPart.invisible) {
                 drawingUtils.drawLandmarks(

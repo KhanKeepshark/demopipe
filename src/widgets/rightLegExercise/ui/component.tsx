@@ -48,7 +48,7 @@ export const RightLegExercise = () => {
       setAngle: setBodyAngle,
       invisible: true,
       getlandmarks: {
-        landmarks: [0],
+        landmarks: [0, 29],
         setLandmarks,
       },
     },
@@ -131,7 +131,12 @@ export const RightLegExercise = () => {
 
   // check head position
   useEffect(() => {
-    if (landmarks && landmarks?.[0].x < 0.3 && landmarks?.[0].y > 0.7) {
+    if (
+      landmarks &&
+      landmarks?.[0].x < 0.3 &&
+      landmarks?.[0].y > 0.7 &&
+      landmarks?.[1].y < 1
+    ) {
       setPoseCheck((pose) => (pose = true));
     } else {
       setPoseCheck((pose) => (pose = false));
@@ -156,7 +161,7 @@ export const RightLegExercise = () => {
         />
         <Notification
           title="Подсказка"
-          description="Для начала работы программы примите позу как на 3d модели сверху"
+          description="Для начала работы программы примите позу как на 3d модели сверху, вдоль фиолетовой линии"
           duration={10}
         />
         <ProgressBar
@@ -168,6 +173,7 @@ export const RightLegExercise = () => {
         {seconds > 0 && play && (
           <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
         )}
+        <div className="absolute h-1 w-full bg-indigo-500 bottom-20" />
         <ExerciseOneControlBlock
           exerciseCount={exerciseCount}
           repeatTarget={repeatTarget}
