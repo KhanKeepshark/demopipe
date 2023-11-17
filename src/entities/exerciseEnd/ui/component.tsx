@@ -15,7 +15,7 @@ export const ExerciseEnd: FC<ExerciseEndProps> = ({ angles }) => {
 
   return (
     <>
-      <div className="absolute top-48 left-56 rounded-xl w-[600px] bg-white p-6">
+      <div className="absolute top-40 left-56 rounded-xl w-[600px] bg-white p-6">
         <div className="flex flex-col items-center">
           <div className="text-lg text-center">
             Ваш средний показатель угла подьема ноги по первому упражнению
@@ -26,14 +26,29 @@ export const ExerciseEnd: FC<ExerciseEndProps> = ({ angles }) => {
           </div>
           <div className="text-4xl mt-2">{getAverage(second)}°</div>
           <div className="text-center mt-4 text-lg">
-            Получите доступ к дополнительным программам упражнений
-            зарегистривовавшись на нашей платформе
+            По данным результатам для улучшения здоровья вам доступно бесплатно
+            рекомендуемая врачом программа упражнений:
           </div>
+          {getAverage(first) < 60 && getAverage(second) < 80 ? (
+            <a
+              className="p-3 bg-slate-400 rounded-lg font-medium mt-4 hover:bg-slate-300"
+              href="http://inventivo.io/programmlight"
+            >
+              Программа 1
+            </a>
+          ) : (
+            <a
+              className="p-3 bg-slate-400 rounded-lg font-medium mt-4 hover:bg-slate-300"
+              href="http://inventivo.io/programmadvanced"
+            >
+              Программа 2
+            </a>
+          )}
           <a
-            className="p-3 bg-slate-400 rounded-lg font-medium mt-4 hover:bg-slate-300"
-            href="http://inventivo.io/registration"
+            className="text-blue-700 hover:text-blue-500 mt-5"
+            href="https://inventivo.io/"
           >
-            Зарегистрироваться
+            Вернуться на главную страницу
           </a>
         </div>
       </div>
