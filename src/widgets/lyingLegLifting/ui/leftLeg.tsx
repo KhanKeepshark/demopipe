@@ -166,11 +166,16 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-black">
       <div className="relative">
-        <video id="webcam" ref={videoRef} autoPlay className="w-[1000px]" />
+        <video
+          id="webcam"
+          ref={videoRef}
+          autoPlay
+          className="w-[1000px] transform max-[640px]:rotate-90 max-w-[120%]"
+        />
         <canvas
           id="output_canvas"
           ref={canvasElementRef}
-          className="absolute top-0 left-0 w-[1000px]"
+          className="absolute top-0 left-0 w-[1000px] transform max-[640px]:rotate-90  max-[640px]:w-full"
         />
         <VideoModel
           poseCheck={poseCheck}
@@ -183,10 +188,11 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
           description="Для начала работы программы примите позу как на 3d модели сверху, вдоль фиолетовой линии"
           duration={10}
         />
-        {seconds > 0 && play && (
-          <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
-        )}
-        <div className="absolute h-1 w-full bg-indigo-500 bottom-20" />
+        {/* {seconds > 0 && play && ( */}
+        <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
+        {/* // )} */}
+        <div className="absolute h-1 w-full bg-indigo-500 bottom-20 hidden sm:block" />
+        <div className="absolute w-1 h-full bg-indigo-500 left-16 top-0 sm:hidden" />
         <ExerciseOneControlBlock
           exerciseCount={exerciseCount}
           repeatTarget={repeatTarget}

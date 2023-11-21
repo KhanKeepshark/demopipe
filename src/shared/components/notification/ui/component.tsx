@@ -13,8 +13,9 @@ export const Notification: FC<NotificationProps> = ({
     api.open({
       message: title,
       description,
-      duration,
+      duration: 9000,
       placement: "bottomLeft",
+      className: "max-[640px]:hidden ",
     });
   };
 

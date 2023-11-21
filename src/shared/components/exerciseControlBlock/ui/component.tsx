@@ -12,7 +12,7 @@ export const ExerciseOneControlBlock: FC<ExerciseOneControlBlockModel> = ({
 }) => {
   return (
     <>
-      <div className="absolute flex -right-0 bottom-0 p-4 bg-opacity-40 backdrop-blur bg-white rounded items-center gap-2">
+      <div className="absolute flex -right-0 bottom-0 p-4 bg-opacity-40 backdrop-blur bg-white rounded items-center gap-2 transform max-[640px]:rotate-90 max-[640px]:right-40 max-[640px]:-bottom-48 max-[640px]:flex-col">
         <div className="flex font-bold text-2xl">
           <div>{exerciseCount}</div>/
           <div

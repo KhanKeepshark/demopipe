@@ -8,8 +8,8 @@ export const Timer: FC<TimeProps> = ({ seconds, setSeconds, play }) => {
     }, 1000);
   }
   return (
-    <div className="absolute top-[340px] left-[460px] h-40 w-40 bg-white flex justify-center items-center rounded-full">
-      <div className="text-7xl">{seconds}</div>
+    <div className="absolute sm:top-[340px] sm:left-[460px] sm:h-40 sm:w-40 bg-white flex justify-center items-center rounded-full transform max-[640px]:rotate-90 w-20 h-20 top-20 left-32">
+      <div className="sm:text-7xl text-4xl">{seconds}</div>
     </div>
   );
 };

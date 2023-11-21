@@ -25,7 +25,7 @@ export const VideoModel: FC<VideoModelProps> = ({
   const Component = poseCheck ? IoChevronDownCircle : IoCloseCircle;
 
   return (
-    <div className="absolute w-80 top-0 -right-10">
+    <div className="absolute w-80 top-0 -right-10 transform max-[640px]:rotate-90 max-[640px]:w-48 max-[640px]:top-64">
       <Component
         className="absolute top-0 right-0 z-10"
         size={50}
