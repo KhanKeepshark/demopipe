@@ -133,13 +133,13 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
 
   useEffect(() => {
     if (isMobile) {
-      if (bodyAngle > 140 && !play && landmarks) {
+      if (bodyAngle > 140 && !play && landmarks && results.length !== 12) {
         if (poseCheck && !firstOn) {
           playVideo();
         }
       }
     } else {
-      if (bodyAngle > 150 && !play && landmarks) {
+      if (bodyAngle > 150 && !play && landmarks && results.length !== 12) {
         if (poseCheck && !firstOn) {
           playVideo();
         }

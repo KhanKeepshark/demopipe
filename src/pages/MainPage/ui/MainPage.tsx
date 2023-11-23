@@ -3,7 +3,7 @@ import { ReverseLegBending } from "@/widgets/reverseLegBending";
 import { useState } from "react";
 
 export const MainPage = () => {
-  const [finishFirstExersize, setFinishFirstExersize] = useState(true);
+  const [finishFirstExersize, setFinishFirstExersize] = useState(false);
   const [results, setResults] = useState<number[]>([]);
 
   return finishFirstExersize ? (
