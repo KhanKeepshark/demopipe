@@ -220,7 +220,7 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
           src={testTwoVideo}
           seconds={seconds}
           play={play}
-          mirrored
+          mirrored={!isMobile}
         />
         <PurpleLine />
         <ExerciseOneControlBlock

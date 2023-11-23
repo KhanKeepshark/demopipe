@@ -213,7 +213,7 @@ export const LyingLegLiftingRight: FC<LyingLegLiftingProps> = ({
           src={testOneVideo}
           seconds={seconds}
           play={play}
-          mirrored
+          mirrored={!isMobile}
         />
         <Notification
           title="Подсказка"
