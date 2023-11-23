@@ -172,7 +172,7 @@ export const ReverseLegBendingLeft: FC<ReverseLegBendingLeftProps> = ({
         landmarks?.[0].x > 0.6 &&
         landmarks?.[0].y > 0.6 &&
         landmarks?.[1].y < 1 &&
-        checkLegAngle > 165
+        bodyAngle > 150
       ) {
         setPoseCheck((prev) => (prev = true));
       } else {
@@ -229,6 +229,11 @@ export const ReverseLegBendingLeft: FC<ReverseLegBendingLeftProps> = ({
           play={play}
           setPlay={setPlay}
         />
+        {/* <div className="absolute -bottom-10 left-0 text-white">
+          <div>{landmarks?.[0].x}</div>
+          <div>{landmarks?.[0].y}</div>
+          <div>{landmarks?.[1].y}</div>
+        </div> */}
       </div>
     </div>
   );

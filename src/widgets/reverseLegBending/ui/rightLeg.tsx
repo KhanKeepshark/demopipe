@@ -171,7 +171,7 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
         landmarks?.[0].x > 0.6 &&
         landmarks?.[0].y < 0.4 &&
         landmarks?.[1].y < 1 &&
-        checkLegAngle > 165
+        bodyAngle > 150
       ) {
         setPoseCheck((prev) => (prev = true));
       } else {
