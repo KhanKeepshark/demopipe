@@ -4,7 +4,15 @@ import {
   Landmark,
   PoseLandmarker,
 } from "@mediapipe/tasks-vision";
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Timer,
   ExerciseOneControlBlock,
@@ -15,6 +23,7 @@ import {
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import testOneVideo from "@/shared/assets/testOne.mp4";
 import { LyingLegLiftingProps } from "../models/LyingLegLiftingModels";
+import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 
 const repeatTarget = 3;
 
@@ -24,6 +33,8 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
 }) => {
   const canvasElementRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const { isMobile } = useContext(ExerciseContext);
 
   const [play, setPlay] = useState(false);
   const [seconds, setSeconds] = useState(3);
@@ -67,6 +78,8 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
     ],
     [],
   );
+
+  console.log(landmarks?.[0]);
 
   // exercise leg count and exercise finish
   useEffect(() => {
@@ -189,9 +202,9 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
           description="Для начала работы программы примите позу как на 3d модели сверху, вдоль фиолетовой линии"
           duration={10}
         />
-        {/* {seconds > 0 && play && ( */}
-        <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
-        {/* )} */}
+        {seconds > 0 && play && (
+          <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
+        )}
         <PurpleLine />
         <ExerciseOneControlBlock
           exerciseCount={exerciseCount}

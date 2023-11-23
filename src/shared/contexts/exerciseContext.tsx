@@ -4,21 +4,24 @@ import { TypeSetState } from "../utils/types";
 interface ExerciseContextType {
   exerciseOrder: number[];
   setExerciseOrder: TypeSetState<number[]>;
+  isMobile: boolean;
 }
 
 export const ExerciseContext = createContext<ExerciseContextType>({
   exerciseOrder: [1, 2, 3],
   setExerciseOrder: () => {},
+  isMobile: false,
 });
 
 export const ExerciseContextProvider: FC<{ children: ReactElement }> = (
   props,
 ) => {
   const [exerciseOrder, setExerciseOrder] = useState<number[]>([1, 2, 3]);
+  const isMobile = window.screen.width < 640;
 
   const exerciseContext = useMemo(
-    () => ({ exerciseOrder, setExerciseOrder }),
-    [exerciseOrder, setExerciseOrder],
+    () => ({ exerciseOrder, setExerciseOrder, isMobile }),
+    [exerciseOrder, setExerciseOrder, isMobile],
   );
 
   return (
