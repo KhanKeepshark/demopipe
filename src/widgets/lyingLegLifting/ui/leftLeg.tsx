@@ -189,9 +189,9 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
           description="Для начала работы программы примите позу как на 3d модели сверху, вдоль фиолетовой линии"
           duration={10}
         />
-        {seconds > 0 && play && (
-          <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
-        )}
+        {/* {seconds > 0 && play && ( */}
+        <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
+        {/* )} */}
         <PurpleLine />
         <ExerciseOneControlBlock
           exerciseCount={exerciseCount}
