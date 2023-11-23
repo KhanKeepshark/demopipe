@@ -4,15 +4,7 @@ import {
   Landmark,
   PoseLandmarker,
 } from "@mediapipe/tasks-vision";
-import {
-  FC,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Timer,
   ExerciseOneControlBlock,
@@ -23,7 +15,6 @@ import {
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import testOneVideo from "@/shared/assets/testOne.mp4";
 import { LyingLegLiftingProps } from "../models/LyingLegLiftingModels";
-import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 
 const repeatTarget = 3;
 
@@ -33,8 +24,6 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
 }) => {
   const canvasElementRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const { isMobile } = useContext(ExerciseContext);
 
   const [play, setPlay] = useState(false);
   const [seconds, setSeconds] = useState(3);
