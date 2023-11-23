@@ -199,12 +199,12 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
           id="webcam"
           ref={videoRef}
           autoPlay
-          className="w-[1000px] transform max-[640px]:scale-x-[-1]"
+          className="w-[1000px] transform max-[1090px]:scale-x-[-1]"
         />
         <canvas
           id="output_canvas"
           ref={canvasElementRef}
-          className="absolute top-0 left-0 w-[1000px] transform max-[640px]:scale-x-[-1]  max-[640px]:w-full"
+          className="absolute top-0 left-0 w-[1000px] transform max-[1090px]:scale-x-[-1]  max-[1090px]:w-full"
         />
         <Notification
           title="Подсказка"
