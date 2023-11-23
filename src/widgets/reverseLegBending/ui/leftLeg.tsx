@@ -4,7 +4,15 @@ import {
   Landmark,
   PoseLandmarker,
 } from "@mediapipe/tasks-vision";
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Timer,
   ExerciseOneControlBlock,
@@ -15,6 +23,7 @@ import {
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import testTwoVideo from "@/shared/assets/testTwo.mp4";
 import { ReverseLegBendingLeftProps } from "../models/ReverseLegBending";
+import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 
 const repeatTarget = 3;
 
@@ -38,6 +47,7 @@ export const ReverseLegBendingLeft: FC<ReverseLegBendingLeftProps> = ({
 
   // max values
   const [maxBodyAngle, setMaxBodyAngle] = useState(180);
+  const { isMobile } = useContext(ExerciseContext);
 
   const leftBodyPartLists: BodyPartLists[] = useMemo(
     () => [
@@ -121,9 +131,17 @@ export const ReverseLegBendingLeft: FC<ReverseLegBendingLeftProps> = ({
   }, []);
 
   useEffect(() => {
-    if (bodyAngle > 150 && !play && landmarks) {
-      if (poseCheck && !firstOn) {
-        playVideo();
+    if (isMobile) {
+      if (bodyAngle > 140 && !play && landmarks) {
+        if (poseCheck && !firstOn) {
+          playVideo();
+        }
+      }
+    } else {
+      if (bodyAngle > 150 && !play && landmarks) {
+        if (poseCheck && !firstOn) {
+          playVideo();
+        }
       }
     }
   }, [bodyAngle, landmarks]);
@@ -146,16 +164,30 @@ export const ReverseLegBendingLeft: FC<ReverseLegBendingLeftProps> = ({
 
   // check head position
   useEffect(() => {
-    if (
-      landmarks &&
-      landmarks?.[0].x < 0.3 &&
-      landmarks?.[0].y > 0.7 &&
-      landmarks?.[1].y < 1 &&
-      bodyAngle > 150
-    ) {
-      setPoseCheck((prev) => (prev = true));
+    if (isMobile) {
+      if (
+        landmarks &&
+        landmarks?.[0].x > 0.7 &&
+        landmarks?.[0].y > 0.7 &&
+        landmarks?.[1].y < 1 &&
+        checkLegAngle > 165
+      ) {
+        setPoseCheck((prev) => (prev = true));
+      } else {
+        setPoseCheck((prev) => (prev = false));
+      }
     } else {
-      setPoseCheck((prev) => (prev = false));
+      if (
+        landmarks &&
+        landmarks?.[0].x < 0.3 &&
+        landmarks?.[0].y > 0.7 &&
+        landmarks?.[1].y < 1 &&
+        bodyAngle > 150
+      ) {
+        setPoseCheck((prev) => (prev = true));
+      } else {
+        setPoseCheck((prev) => (prev = false));
+      }
     }
   }, [landmarks]);
 
@@ -166,12 +198,12 @@ export const ReverseLegBendingLeft: FC<ReverseLegBendingLeftProps> = ({
           id="webcam"
           ref={videoRef}
           autoPlay
-          className="w-[1000px]  transform max-[640px]:rotate-90"
+          className="w-[1000px]  transform max-[640px]:scale-x-[-1]"
         />
         <canvas
           id="output_canvas"
           ref={canvasElementRef}
-          className="absolute top-0 left-0 w-[1000px] transform max-[640px]:rotate-90  max-[640px]:w-full"
+          className="absolute top-0 left-0 w-[1000px] transform max-[640px]:scale-x-[-1]  max-[640px]:w-full"
         />
         <Notification
           title="Подсказка"

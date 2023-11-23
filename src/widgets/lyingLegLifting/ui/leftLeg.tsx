@@ -139,9 +139,17 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
   }, []);
 
   useEffect(() => {
-    if (bodyAngle > 178 && !play && landmarks) {
-      if (poseCheck && !firstOn) {
-        playVideo();
+    if (isMobile) {
+      if (bodyAngle > 170 && !play && landmarks) {
+        if (poseCheck && !firstOn) {
+          playVideo();
+        }
+      }
+    } else {
+      if (bodyAngle > 178 && !play && landmarks) {
+        if (poseCheck && !firstOn) {
+          playVideo();
+        }
       }
     }
   }, [bodyAngle, landmarks]);

@@ -4,7 +4,15 @@ import {
   Landmark,
   PoseLandmarker,
 } from "@mediapipe/tasks-vision";
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Timer,
   ExerciseOneControlBlock,
@@ -16,6 +24,7 @@ import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import testTwoVideo from "@/shared/assets/testTwo.mp4";
 import { ReverseLegBendingRightProps } from "../models/ReverseLegBending";
 import { ExerciseEnd } from "@/entities/exerciseEnd";
+import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 
 const repeatTarget = 3;
 
@@ -39,6 +48,7 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
 
   // max values
   const [maxBodyAngle, setMaxBodyAngle] = useState(180);
+  const { isMobile } = useContext(ExerciseContext);
 
   const leftBodyPartLists: BodyPartLists[] = useMemo(
     () => [
@@ -122,9 +132,17 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
   }, []);
 
   useEffect(() => {
-    if (bodyAngle > 150 && !play && landmarks) {
-      if (poseCheck && !firstOn) {
-        playVideo();
+    if (isMobile) {
+      if (bodyAngle > 140 && !play && landmarks) {
+        if (poseCheck && !firstOn) {
+          playVideo();
+        }
+      }
+    } else {
+      if (bodyAngle > 150 && !play && landmarks) {
+        if (poseCheck && !firstOn) {
+          playVideo();
+        }
       }
     }
   }, [bodyAngle, landmarks]);
@@ -147,16 +165,30 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
 
   // check head position
   useEffect(() => {
-    if (
-      landmarks &&
-      landmarks?.[0].x > 0.7 &&
-      landmarks?.[0].y > 0.7 &&
-      landmarks?.[1].y < 1 &&
-      bodyAngle > 150
-    ) {
-      setPoseCheck((prev) => (prev = true));
+    if (isMobile) {
+      if (
+        landmarks &&
+        landmarks?.[0].x > 0.7 &&
+        landmarks?.[0].y < 0.3 &&
+        landmarks?.[1].y < 1 &&
+        checkLegAngle > 165
+      ) {
+        setPoseCheck((prev) => (prev = true));
+      } else {
+        setPoseCheck((prev) => (prev = false));
+      }
     } else {
-      setPoseCheck((prev) => (prev = false));
+      if (
+        landmarks &&
+        landmarks?.[0].x > 0.7 &&
+        landmarks?.[0].y > 0.7 &&
+        landmarks?.[1].y < 1 &&
+        bodyAngle > 150
+      ) {
+        setPoseCheck((prev) => (prev = true));
+      } else {
+        setPoseCheck((prev) => (prev = false));
+      }
     }
   }, [landmarks]);
 
