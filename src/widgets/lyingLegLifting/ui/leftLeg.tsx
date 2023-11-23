@@ -167,11 +167,11 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-black">
       <div className="relative">
-        <video id="webcam" ref={videoRef} autoPlay className="w-[1000px]" />
+        <video id="webcam" ref={videoRef} autoPlay className="w-[1000px] " />
         <canvas
           id="output_canvas"
           ref={canvasElementRef}
-          className="absolute top-0 left-0 w-[1000px]"
+          className="absolute top-0 left-0 w-[1000px] max-[640px]:w-full"
         />
         <VideoModel
           poseCheck={poseCheck}
