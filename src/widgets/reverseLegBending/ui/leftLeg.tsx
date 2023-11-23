@@ -162,13 +162,15 @@ export const ReverseLegBendingLeft: FC<ReverseLegBendingLeftProps> = ({
     }
   }, [seconds === 0]);
 
+  console.log(landmarks?.[0]);
+
   // check head position
   useEffect(() => {
     if (isMobile) {
       if (
         landmarks &&
-        landmarks?.[0].x > 0.7 &&
-        landmarks?.[0].y > 0.7 &&
+        landmarks?.[0].x > 0.6 &&
+        landmarks?.[0].y > 0.6 &&
         landmarks?.[1].y < 1 &&
         checkLegAngle > 165
       ) {

@@ -168,8 +168,8 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
     if (isMobile) {
       if (
         landmarks &&
-        landmarks?.[0].x > 0.7 &&
-        landmarks?.[0].y < 0.3 &&
+        landmarks?.[0].x > 0.6 &&
+        landmarks?.[0].y < 0.4 &&
         landmarks?.[1].y < 1 &&
         checkLegAngle > 165
       ) {
