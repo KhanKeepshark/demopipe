@@ -4,7 +4,15 @@ import {
   Landmark,
   PoseLandmarker,
 } from "@mediapipe/tasks-vision";
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Timer,
   ExerciseOneControlBlock,
@@ -15,6 +23,7 @@ import {
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import testOneVideo from "@/shared/assets/testOne.mp4";
 import { LyingLegLiftingProps } from "../models/LyingLegLiftingModels";
+import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 
 const repeatTarget = 3;
 
@@ -24,6 +33,8 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
 }) => {
   const canvasElementRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const { isMobile } = useContext(ExerciseContext);
 
   const [play, setPlay] = useState(false);
   const [seconds, setSeconds] = useState(3);
@@ -153,16 +164,30 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
 
   // check head position
   useEffect(() => {
-    if (
-      landmarks &&
-      landmarks?.[0].x > 0.7 &&
-      landmarks?.[0].y > 0.7 &&
-      landmarks?.[1].y < 1 &&
-      checkLegAngle > 165
-    ) {
-      setPoseCheck((prev) => (prev = true));
+    if (isMobile) {
+      if (
+        landmarks &&
+        landmarks?.[0].x > 0.7 &&
+        landmarks?.[0].y < 0.3 &&
+        landmarks?.[1].y < 1 &&
+        checkLegAngle > 165
+      ) {
+        setPoseCheck((prev) => (prev = true));
+      } else {
+        setPoseCheck((prev) => (prev = false));
+      }
     } else {
-      setPoseCheck((prev) => (prev = false));
+      if (
+        landmarks &&
+        landmarks?.[0].x > 0.7 &&
+        landmarks?.[0].y > 0.7 &&
+        landmarks?.[1].y < 1 &&
+        checkLegAngle > 165
+      ) {
+        setPoseCheck((prev) => (prev = true));
+      } else {
+        setPoseCheck((prev) => (prev = false));
+      }
     }
   }, [landmarks]);
 
@@ -173,18 +198,19 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
           id="webcam"
           ref={videoRef}
           autoPlay
-          className="w-[1000px] transform scale-x-[-1]"
+          className="w-[1000px] transform max-[640px]:scale-x-[-1]"
         />
         <canvas
           id="output_canvas"
           ref={canvasElementRef}
-          className="absolute top-0 left-0 w-[1000px] max-[640px]:w-full transform scale-x-[-1]"
+          className="absolute top-0 left-0 w-[1000px] max-[640px]:w-full transform max-[640px]:scale-x-[-1]"
         />
         <VideoModel
           poseCheck={poseCheck}
           src={testOneVideo}
           seconds={seconds}
           play={play}
+          mirrored={isMobile}
         />
         <Notification
           title="Подсказка"

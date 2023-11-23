@@ -174,7 +174,7 @@ export const LyingLegLiftingRight: FC<LyingLegLiftingProps> = ({
         <canvas
           id="output_canvas"
           ref={canvasElementRef}
-          className="absolute top-0 left-0 w-[1000px] transform max-[640px]:rotate-90  max-[640px]:w-full"
+          className="absolute top-0 left-0 w-[1000px] transform max-[640px]:rotate-90 max-[640px]:w-full"
         />
         <VideoModel
           poseCheck={poseCheck}
