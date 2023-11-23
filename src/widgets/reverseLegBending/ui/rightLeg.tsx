@@ -10,6 +10,7 @@ import {
   ExerciseOneControlBlock,
   Notification,
   VideoModel,
+  PurpleLine,
 } from "@/shared/components";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import testTwoVideo from "@/shared/assets/testTwo.mp4";
@@ -162,11 +163,16 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-black">
       <div className="relative">
-        <video id="webcam" ref={videoRef} autoPlay className="w-[1000px]" />
+        <video
+          id="webcam"
+          ref={videoRef}
+          autoPlay
+          className="w-[1000px]  transform max-[640px]:rotate-90"
+        />
         <canvas
           id="output_canvas"
           ref={canvasElementRef}
-          className="absolute top-0 left-0 w-[1000px]"
+          className="absolute top-0 left-0 w-[1000px] transform max-[640px]:rotate-90  max-[640px]:w-full"
         />
         <Notification
           title="Подсказка"
@@ -184,7 +190,7 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
           play={play}
           mirrored
         />
-        <div className="absolute h-1 w-full bg-indigo-500 bottom-20" />
+        <PurpleLine />
         <ExerciseOneControlBlock
           exerciseCount={exerciseCount}
           repeatTarget={repeatTarget}

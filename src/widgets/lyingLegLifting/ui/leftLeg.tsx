@@ -10,6 +10,7 @@ import {
   ExerciseOneControlBlock,
   Notification,
   VideoModel,
+  PurpleLine,
 } from "@/shared/components";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import testOneVideo from "@/shared/assets/testOne.mp4";
@@ -170,7 +171,7 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
           id="webcam"
           ref={videoRef}
           autoPlay
-          className="w-[1000px] transform max-[640px]:rotate-90 max-w-[120%]"
+          className="w-[1000px] transform max-[640px]:rotate-90 "
         />
         <canvas
           id="output_canvas"
@@ -188,11 +189,10 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
           description="Для начала работы программы примите позу как на 3d модели сверху, вдоль фиолетовой линии"
           duration={10}
         />
-        {/* {seconds > 0 && play && ( */}
-        <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
-        {/* // )} */}
-        <div className="absolute h-1 w-full bg-indigo-500 bottom-20 hidden sm:block" />
-        <div className="absolute w-1 h-full bg-indigo-500 left-16 top-0 sm:hidden" />
+        {seconds > 0 && play && (
+          <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
+        )}
+        <PurpleLine />
         <ExerciseOneControlBlock
           exerciseCount={exerciseCount}
           repeatTarget={repeatTarget}
