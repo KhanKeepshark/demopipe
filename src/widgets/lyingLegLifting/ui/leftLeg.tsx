@@ -79,8 +79,6 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
     [],
   );
 
-  console.log(landmarks?.[0]);
-
   // exercise leg count and exercise finish
   useEffect(() => {
     if (play && exerciseCount !== repeatTarget && poseCheck) {
