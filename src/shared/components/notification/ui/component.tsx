@@ -15,7 +15,7 @@ export const Notification: FC<NotificationProps> = ({
       description,
       duration: 9000,
       placement: "bottomLeft",
-      className: "max-[640px]:hidden ",
+      className: "max-[1090px]:hidden ",
     });
   };
 
