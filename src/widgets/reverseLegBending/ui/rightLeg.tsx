@@ -214,7 +214,9 @@ export const ReverseLegBendingRight: FC<ReverseLegBendingRightProps> = ({
         {seconds > 0 && play && (
           <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
         )}
-        {results.length === 12 && <ExerciseEnd angles={results} />}
+        {results.length === 12 && (
+          <ExerciseEnd isMobile={isMobile} angles={results} />
+        )}
         <VideoModel
           poseCheck={poseCheck}
           src={testTwoVideo}
