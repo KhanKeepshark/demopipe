@@ -1,9 +1,5 @@
 import { enableCam } from "@/shared/utils/mediaPipeDraw";
-import {
-  FilesetResolver,
-  Landmark,
-  PoseLandmarker,
-} from "@mediapipe/tasks-vision";
+import { FilesetResolver, PoseLandmarker } from "@mediapipe/tasks-vision";
 import {
   FC,
   useCallback,
@@ -20,63 +16,39 @@ import {
   VideoModel,
   PurpleLine,
 } from "@/shared/components";
-import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
-import testOneVideo from "@/shared/assets/testOne.mp4";
-import ModelPng from "@/shared/assets/images/model.png";
-import { LyingLegLiftingProps } from "../models/LyingLegLiftingModels";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
+import { ExerciseProps } from "../models/ExerciseProps";
+import clsx from "clsx";
+import { ExerciseEnd } from "@/entities/exerciseEnd";
 
-const repeatTarget = 3;
-
-export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
+export const Exercise: FC<ExerciseProps> = ({
+  landmarksList,
+  repeatTarget,
+  poseCheckCondition,
+  bodyAngle,
+  landmarks,
   setFinish,
-  setResults,
+  addResult,
+  img,
+  videoModel,
+  right = false,
+  results,
 }) => {
   const canvasElementRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
   const { isMobile } = useContext(ExerciseContext);
+
   const [play, setPlay] = useState(false);
   const [seconds, setSeconds] = useState(3);
   const [firstOn, setFirstOn] = useState(false);
-  const [bodyAngle, setBodyAngle] = useState(0);
-  const [checkLegAngle, setCheckLegAngle] = useState(0);
   const [exerciseCount, setExerciseCount] = useState(0);
   const poseLandmarkerRef = useRef<any | null>(null);
   const [exerciseСycle, setExerciseСycle] = useState(false);
-  const [landmarks, setLandmarks] = useState<Landmark[]>();
   const [poseCheck, setPoseCheck] = useState(false);
 
   // max values
   const [maxBodyAngle, setMaxBodyAngle] = useState(180);
-
-  const leftBodyPartLists: BodyPartLists[] = useMemo(
-    () => [
-      {
-        point1: 7,
-        point2: 23,
-        point3: 29,
-        setAngle: setBodyAngle,
-        getlandmarks: {
-          landmarks: [0, 29],
-          setLandmarks,
-        },
-        invisible: true,
-      },
-      {
-        point1: 23,
-        point2: 25,
-        point3: 27,
-        setAngle: setCheckLegAngle,
-        invisible: true,
-      },
-      {
-        point1: 11,
-        point2: 23,
-        point3: 29,
-      },
-    ],
-    [],
-  );
 
   // exercise leg count and exercise finish
   useEffect(() => {
@@ -89,11 +61,12 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
       } else if (bodyAngle > 177 && exerciseСycle) {
         setExerciseCount((prev) => prev + 1);
         setExerciseСycle((prev) => (prev = false));
-        setResults((prev) => [...prev, 180 - maxBodyAngle]);
+        addResult(maxBodyAngle);
         setMaxBodyAngle((prev) => (prev = 180));
       }
     } else if (exerciseCount === repeatTarget) {
-      setFinish(true);
+      setFinish?.(true);
+      setPlay(false);
     }
   }, [play, exerciseCount, bodyAngle]);
 
@@ -120,7 +93,7 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
         videoRef,
         canvasElementRef,
         play,
-        bodyPartLists: leftBodyPartLists,
+        bodyPartLists: landmarksList,
         poseLandmarkerRef,
       });
     };
@@ -160,7 +133,7 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
         videoRef,
         canvasElementRef,
         play,
-        bodyPartLists: leftBodyPartLists,
+        bodyPartLists: landmarksList,
         poseLandmarkerRef,
       });
       setFirstOn((prev) => prev === true);
@@ -170,31 +143,24 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
   // check head position
   useEffect(() => {
     if (isMobile) {
-      if (
-        landmarks &&
-        landmarks?.[0].x > 0.7 &&
-        landmarks?.[0].y < 0.3 &&
-        landmarks?.[1].y < 1 &&
-        checkLegAngle > 165
-      ) {
+      if (poseCheckCondition) {
         setPoseCheck((prev) => (prev = true));
       } else {
         setPoseCheck((prev) => (prev = false));
       }
     } else {
-      if (
-        landmarks &&
-        landmarks?.[0].x > 0.7 &&
-        landmarks?.[0].y > 0.7 &&
-        landmarks?.[1].y < 1 &&
-        checkLegAngle > 165
-      ) {
+      if (poseCheckCondition) {
         setPoseCheck((prev) => (prev = true));
       } else {
         setPoseCheck((prev) => (prev = false));
       }
     }
   }, [landmarks]);
+
+  const mirrorComponents = useMemo(
+    () => (isMobile ? !right : right),
+    [isMobile, right],
+  );
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-black">
@@ -210,22 +176,31 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
           ref={canvasElementRef}
           className="absolute top-0 left-0 w-[1000px] max-[1090px]:w-full transform max-[1090px]:scale-x-[-1]"
         />
-        <img
-          className="absolute top-[270px] -right-28 w-[1300px] opacity-50 max-w-[2000px]"
-          src={ModelPng}
-          alt=""
-        />
         <VideoModel
           poseCheck={poseCheck}
-          src={testOneVideo}
+          src={videoModel}
           seconds={seconds}
           play={play}
-          mirrored={isMobile}
+          mirrored={mirrorComponents}
         />
+        {results?.length === 12 && (
+          <ExerciseEnd isMobile={isMobile} angles={results} />
+        )}
         <Notification
           title="Подсказка"
           description="Для начала работы программы примите позу как на 3d модели сверху, вдоль фиолетовой линии"
           duration={10}
+        />
+        <img
+          className={clsx(
+            "absolute top-[270px] w-[1300px] opacity-50 max-w-[2000px]",
+            {
+              "transform scale-x-[-1] -right-44": mirrorComponents,
+              "-right-28": !mirrorComponents,
+            },
+          )}
+          src={img}
+          alt=""
         />
         {seconds > 0 && play && (
           <Timer seconds={seconds} setSeconds={setSeconds} play={play} />

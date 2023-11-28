@@ -3,7 +3,7 @@ import { LyingLegLiftingLeft } from "./leftLeg";
 import { LyingLegLiftingRight } from "./rightLeg";
 import { LyingLegLiftingProps } from "../models/LyingLegLiftingModels";
 
-export const LyingLegLifting: FC<LyingLegLiftingProps> = ({
+export const LyingLegLiftingfff: FC<LyingLegLiftingProps> = ({
   setResults,
   setFinish,
 }) => {

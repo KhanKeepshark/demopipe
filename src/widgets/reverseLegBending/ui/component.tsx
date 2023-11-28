@@ -3,7 +3,7 @@ import { ReverseLegBendingLeft } from "./leftLeg";
 import { ReverseLegBendingRight } from "./rightLeg";
 import { ReverseLegBendingProps } from "../models/ReverseLegBending";
 
-export const ReverseLegBending: FC<ReverseLegBendingProps> = ({
+export const ReverseLegBendingsds: FC<ReverseLegBendingProps> = ({
   setResults,
   results,
 }) => {

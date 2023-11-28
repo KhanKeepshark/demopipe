@@ -22,19 +22,18 @@ import {
 } from "@/shared/components";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import testOneVideo from "@/shared/assets/testOne.mp4";
-import ModelPng from "@/shared/assets/images/model.png";
 import { LyingLegLiftingProps } from "../models/LyingLegLiftingModels";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 
 const repeatTarget = 3;
 
-export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
-  setFinish,
+export const LyingLegLiftingRight: FC<LyingLegLiftingProps> = ({
   setResults,
+  setFinish,
 }) => {
   const canvasElementRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { isMobile } = useContext(ExerciseContext);
+
   const [play, setPlay] = useState(false);
   const [seconds, setSeconds] = useState(3);
   const [firstOn, setFirstOn] = useState(false);
@@ -46,33 +45,32 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
   const [landmarks, setLandmarks] = useState<Landmark[]>();
   const [poseCheck, setPoseCheck] = useState(false);
 
-  // max values
   const [maxBodyAngle, setMaxBodyAngle] = useState(180);
+  const { isMobile } = useContext(ExerciseContext);
 
   const leftBodyPartLists: BodyPartLists[] = useMemo(
     () => [
       {
-        point1: 7,
-        point2: 23,
-        point3: 29,
+        point1: 8,
+        point2: 24,
+        point3: 30,
         setAngle: setBodyAngle,
         getlandmarks: {
-          landmarks: [0, 29],
+          landmarks: [0, 30],
           setLandmarks,
         },
-        invisible: true,
       },
       {
-        point1: 23,
-        point2: 25,
-        point3: 27,
+        point1: 24,
+        point2: 26,
+        point3: 28,
         setAngle: setCheckLegAngle,
         invisible: true,
       },
       {
-        point1: 11,
-        point2: 23,
-        point3: 29,
+        point1: 12,
+        point2: 24,
+        point3: 30,
       },
     ],
     [],
@@ -173,7 +171,7 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
       if (
         landmarks &&
         landmarks?.[0].x > 0.7 &&
-        landmarks?.[0].y < 0.3 &&
+        landmarks?.[0].y > 0.7 &&
         landmarks?.[1].y < 1 &&
         checkLegAngle > 165
       ) {
@@ -184,7 +182,7 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
     } else {
       if (
         landmarks &&
-        landmarks?.[0].x > 0.7 &&
+        landmarks?.[0].x < 0.3 &&
         landmarks?.[0].y > 0.7 &&
         landmarks?.[1].y < 1 &&
         checkLegAngle > 165
@@ -198,7 +196,7 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-black">
-      <div className="relative overflow-hidden">
+      <div className="relative">
         <video
           id="webcam"
           ref={videoRef}
@@ -208,19 +206,14 @@ export const LyingLegLiftingLeft: FC<LyingLegLiftingProps> = ({
         <canvas
           id="output_canvas"
           ref={canvasElementRef}
-          className="absolute top-0 left-0 w-[1000px] max-[1090px]:w-full transform max-[1090px]:scale-x-[-1]"
-        />
-        <img
-          className="absolute top-[270px] -right-28 w-[1300px] opacity-50 max-w-[2000px]"
-          src={ModelPng}
-          alt=""
+          className="absolute top-0 left-0 w-[1000px] transform max-[1090px]:scale-x-[-1] max-[1090px]:w-full"
         />
         <VideoModel
           poseCheck={poseCheck}
           src={testOneVideo}
           seconds={seconds}
           play={play}
-          mirrored={isMobile}
+          mirrored={!isMobile}
         />
         <Notification
           title="Подсказка"
