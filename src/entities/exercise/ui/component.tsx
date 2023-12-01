@@ -33,6 +33,8 @@ export const Exercise: FC<ExerciseProps> = ({
   videoModel,
   right = false,
   results,
+  exerciseCycleCondition,
+  exercisePlayCondition,
 }) => {
   const canvasElementRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,12 +55,12 @@ export const Exercise: FC<ExerciseProps> = ({
   // exercise leg count and exercise finish
   useEffect(() => {
     if (play && exerciseCount !== repeatTarget && poseCheck) {
-      if (bodyAngle < 165) {
+      if (exerciseCycleCondition[0]) {
         setExerciseСycle((prev) => (prev = true));
         if (bodyAngle < maxBodyAngle) {
           setMaxBodyAngle((prev) => (prev = bodyAngle));
         }
-      } else if (bodyAngle > 177 && exerciseСycle) {
+      } else if (exerciseCycleCondition[1] && exerciseСycle) {
         setExerciseCount((prev) => prev + 1);
         setExerciseСycle((prev) => (prev = false));
         addResult(maxBodyAngle);
@@ -68,7 +70,7 @@ export const Exercise: FC<ExerciseProps> = ({
       setFinish?.(true);
       setPlay(false);
     }
-  }, [play, exerciseCount, bodyAngle]);
+  }, [play, exerciseCount, bodyAngle, exerciseCycleCondition]);
 
   // turn on mediaPipe
   useEffect(() => {
@@ -109,20 +111,12 @@ export const Exercise: FC<ExerciseProps> = ({
   }, []);
 
   useEffect(() => {
-    if (isMobile) {
-      if (bodyAngle > 170 && !play && landmarks) {
-        if (poseCheck && !firstOn) {
-          playVideo();
-        }
-      }
-    } else {
-      if (bodyAngle > 178 && !play && landmarks) {
-        if (poseCheck && !firstOn) {
-          playVideo();
-        }
+    if (exercisePlayCondition && !play && landmarks) {
+      if (poseCheck && !firstOn) {
+        playVideo();
       }
     }
-  }, [bodyAngle, landmarks]);
+  }, [exercisePlayCondition, landmarks]);
 
   useEffect(() => {
     if (seconds === 0) {
@@ -193,10 +187,11 @@ export const Exercise: FC<ExerciseProps> = ({
         />
         <img
           className={clsx(
-            "absolute top-[270px] w-[1300px] opacity-50 max-w-[2000px]",
+            "absolute top-[270px] w-[1300px] opacity-50 max-w-[2000px] transform max-[1090px]:w-full max-[1090px]:top-20  max-[1090px]:rotate-90",
             {
-              "transform scale-x-[-1] -right-44": mirrorComponents,
-              "-right-28": !mirrorComponents,
+              "transform scale-x-[-1] -right-44 max-[1090px]:right-[22%]":
+                mirrorComponents,
+              "-right-28 max-[1090px]:right-[22%]": !mirrorComponents,
             },
           )}
           src={img}

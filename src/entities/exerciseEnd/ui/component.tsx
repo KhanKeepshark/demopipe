@@ -16,7 +16,7 @@ export const ExerciseEnd: FC<ExerciseEndProps> = ({ angles, isMobile }) => {
   return (
     <>
       {!isMobile ? (
-        <div className="absolute top-40 left-56 rounded-xl w-[600px] bg-white p-6 hidden xl:block">
+        <div className="absolute top-40 left-56 z-10 rounded-xl w-[600px] bg-white p-6 hidden xl:block">
           <div className="flex flex-col items-center">
             <div className="text-lg text-center">
               Ваш средний показатель угла подьема ноги по первому упражнению

@@ -51,7 +51,7 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
     if (
       landmarks &&
       landmarks?.[0].x > 0.6 &&
-      landmarks?.[0].y > 0.6 &&
+      landmarks?.[0].y > 0.5 &&
       landmarks?.[1].y < 1 &&
       bodyAngle > 150 &&
       isMobile
@@ -60,7 +60,7 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
     } else if (
       landmarks &&
       landmarks?.[0].x < 0.3 &&
-      landmarks?.[0].y > 0.7 &&
+      landmarks?.[0].y > 0.6 &&
       landmarks?.[1].y < 1 &&
       bodyAngle > 150
     ) {
@@ -98,7 +98,7 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
     if (
       landmarks &&
       landmarks?.[0].x > 0.6 &&
-      landmarks?.[0].y < 0.4 &&
+      landmarks?.[0].y < 0.5 &&
       landmarks?.[1].y < 1 &&
       bodyAngle > 150 &&
       isMobile
@@ -107,7 +107,7 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
     } else if (
       landmarks &&
       landmarks?.[0].x > 0.7 &&
-      landmarks?.[0].y > 0.7 &&
+      landmarks?.[0].y > 0.6 &&
       landmarks?.[1].y < 1 &&
       bodyAngle > 150
     ) {
@@ -116,6 +116,17 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
       return false;
     }
   }, [landmarks, checkLegAngle, isMobile]);
+
+  // all
+  const exerciseCycleCondition = useMemo(
+    () => [checkLegAngle < 110, checkLegAngle > 150],
+    [checkLegAngle],
+  );
+
+  const exercisePlayCondition = useMemo(() => {
+    const bodyAngleCondition = isMobile ? 140 : 150;
+    return bodyAngle > bodyAngleCondition;
+  }, [bodyAngle, isMobile]);
 
   return finishLeg ? (
     <Exercise
@@ -129,6 +140,8 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
       img={ModelPng}
       videoModel={testTwoVideo}
       results={results}
+      exerciseCycleCondition={exerciseCycleCondition}
+      exercisePlayCondition={exercisePlayCondition}
       right
     />
   ) : (
@@ -141,6 +154,8 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
       bodyAngle={bodyAngle}
       landmarksList={leftBodyPartLists}
       poseCheckCondition={leftPoseCheckCondition}
+      exerciseCycleCondition={exerciseCycleCondition}
+      exercisePlayCondition={exercisePlayCondition}
       img={ModelPng}
       videoModel={testTwoVideo}
     />

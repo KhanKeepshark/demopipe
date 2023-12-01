@@ -128,6 +128,17 @@ export const LyingLegLifting: FC<OrderExerciseProps> = ({
     }
   }, [landmarks, checkLegAngle, isMobile]);
 
+  // all
+  const exerciseCycleCondition = useMemo(
+    () => [bodyAngle < 165, bodyAngle > 177],
+    [bodyAngle],
+  );
+
+  const exercisePlayCondition = useMemo(() => {
+    const bodyAngleCondition = isMobile ? 170 : 178;
+    return bodyAngle > bodyAngleCondition;
+  }, [bodyAngle, isMobile]);
+
   return finishLeg ? (
     <Exercise
       key="right"
@@ -141,6 +152,8 @@ export const LyingLegLifting: FC<OrderExerciseProps> = ({
       img={ModelPng}
       videoModel={testOneVideo}
       right
+      exerciseCycleCondition={exerciseCycleCondition}
+      exercisePlayCondition={exercisePlayCondition}
     />
   ) : (
     <Exercise
@@ -154,6 +167,8 @@ export const LyingLegLifting: FC<OrderExerciseProps> = ({
       poseCheckCondition={leftPoseCheckCondition}
       img={ModelPng}
       videoModel={testOneVideo}
+      exerciseCycleCondition={exerciseCycleCondition}
+      exercisePlayCondition={exercisePlayCondition}
     />
   );
 };

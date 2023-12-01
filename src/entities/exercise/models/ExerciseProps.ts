@@ -14,4 +14,6 @@ export interface ExerciseProps {
   img: string;
   videoModel: string;
   results?: number[];
+  exerciseCycleCondition: boolean[];
+  exercisePlayCondition: boolean;
 }
