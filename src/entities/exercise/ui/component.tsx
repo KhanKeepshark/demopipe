@@ -187,7 +187,7 @@ export const Exercise: FC<ExerciseProps> = ({
         />
         <img
           className={clsx(
-            "absolute top-[270px] w-[1300px] opacity-50 max-[1090px]:-right-[15%] max-w-[2000px] transform max-[1090px]:w-[160%] max-[1090px]:top-24 max-[1090px]:rotate-90",
+            "absolute top-[270px] w-[1300px] opacity-50 max-[1090px]:-right-[15%] max-w-[2000px] transform max-[1090px]:w-[160%] max-[1090px]:top-32 max-[1090px]:rotate-90",
             {
               "transform scale-x-[-1] -right-44": mirrorComponents,
               "-right-28": !mirrorComponents,
