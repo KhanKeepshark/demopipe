@@ -1,5 +1,6 @@
 import { RouteProps } from "react-router-dom";
 import { MainPage } from "@/pages/MainPage";
+import { ExerciseOnePage } from "@/pages/ExerciseOnePage/ui/ExerciseOnePage";
 
 export enum AppRoutes {
   MAIN = "main",
@@ -33,6 +34,6 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
 
   [AppRoutes.TEST]: {
     path: RoutePath.test,
-    element: <MainPage />,
+    element: <ExerciseOnePage />,
   },
 };

@@ -12,6 +12,7 @@ export interface ExerciseProps {
   addResult: (maxBodyAngle: number) => void;
   right?: boolean;
   img: string;
+  imgHeight?: string;
   videoModel: string;
   results?: number[];
   exerciseCycleCondition: boolean[];
