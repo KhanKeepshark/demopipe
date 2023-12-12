@@ -158,7 +158,7 @@ export const Exercise: FC<ExerciseProps> = ({
   );
 
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-black">
+    <div className="flex justify-center items-center w-screen h-screen bg-exerciseBgImg z-20">
       <div className="relative overflow-hidden">
         <video
           id="webcam"

@@ -1,7 +1,7 @@
 import { LyingLegLifting, ReverseLegBending } from "@/widgets/exercises";
 import { useState } from "react";
 
-export const MainPage = () => {
+export const ExerciseTestPage = () => {
   const [finishFirstExersize, setFinishFirstExersize] = useState(false);
   const [results, setResults] = useState<number[]>([]);
 

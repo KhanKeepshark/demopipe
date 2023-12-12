@@ -4,11 +4,10 @@ import { Exercise } from "@/entities/exercise";
 import { Landmark } from "@mediapipe/tasks-vision";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
-import ThirdExVideo from "@/shared/assets/ThirdEx.mp4";
-import ThirdExImg from "@/shared/assets/images/ThirdEx.png";
+import { ThirdExModel, ThirdExVideo } from "@/shared/assets";
 
 export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
-  const [finishLeg, setFinishLeg] = useState(true);
+  const [finishLeg, setFinishLeg] = useState(false);
   const [landmarks, setLandmarks] = useState<Landmark[]>();
   const [bodyAngle, setBodyAngle] = useState(0);
   const { isMobile } = useContext(ExerciseContext);
@@ -33,7 +32,7 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
 
   const addResult = useCallback(
     (maxBodyAngle: number) =>
-      setResults((prev) => [...prev, 180 - maxBodyAngle]),
+      setResults?.((prev) => [...prev, 180 - maxBodyAngle]),
     [setResults],
   );
 
@@ -102,7 +101,7 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
 
   // all
   const exerciseCycleCondition = useMemo(
-    () => [bodyAngle < 80, bodyAngle > 90],
+    () => [bodyAngle < 70, bodyAngle > 90],
     [bodyAngle],
   );
 
@@ -120,7 +119,7 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       bodyAngle={bodyAngle}
       landmarksList={rightBodyPartLists}
       poseCheckCondition={rightPoseCheckCondition}
-      img={ThirdExImg}
+      img={ThirdExModel}
       videoModel={ThirdExVideo}
       imgHeight="top-[130px]"
       right
@@ -137,7 +136,7 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       bodyAngle={bodyAngle}
       landmarksList={leftBodyPartLists}
       poseCheckCondition={leftPoseCheckCondition}
-      img={ThirdExImg}
+      img={ThirdExModel}
       imgHeight="top-[130px]"
       videoModel={ThirdExVideo}
       exerciseCycleCondition={exerciseCycleCondition}

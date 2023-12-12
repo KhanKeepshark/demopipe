@@ -4,8 +4,7 @@ import { Exercise } from "@/entities/exercise";
 import { Landmark } from "@mediapipe/tasks-vision";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
-import FourthExVideo from "@/shared/assets/FourthEx.mp4";
-import FourthExImg from "@/shared/assets/images/FourthEx.png";
+import { FourthExModel, FourthExVideo } from "@/shared/assets";
 
 export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const [finishLeg, setFinishLeg] = useState(false);
@@ -48,7 +47,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
 
   const addResult = useCallback(
     (maxBodyAngle: number) =>
-      setResults((prev) => [...prev, 180 - maxBodyAngle]),
+      setResults?.((prev) => [...prev, 180 - maxBodyAngle]),
     [setResults],
   );
 
@@ -153,7 +152,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       bodyAngle={bodyAngle}
       landmarksList={rightBodyPartLists}
       poseCheckCondition={rightPoseCheckCondition}
-      img={FourthExImg}
+      img={FourthExModel}
       videoModel={FourthExVideo}
       right
       exerciseCycleCondition={exerciseCycleCondition}
@@ -169,7 +168,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       bodyAngle={bodyAngle}
       landmarksList={leftBodyPartLists}
       poseCheckCondition={leftPoseCheckCondition}
-      img={FourthExImg}
+      img={FourthExModel}
       videoModel={FourthExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}

@@ -1,39 +1,52 @@
 import { RouteProps } from "react-router-dom";
 import { MainPage } from "@/pages/MainPage";
-import { ExerciseOnePage } from "@/pages/ExerciseOnePage/ui/ExerciseOnePage";
+import { MainLayout } from "@/shared/layout";
+import { FourthEx, FirstEx, ThirdEx } from "@/widgets/exercises";
+import { SecondEx } from "@/widgets/exercises/ui/secondEx";
 
 export enum AppRoutes {
-  MAIN = "main",
-  // LyingLegLiftingLeft = "testOne",
-  // ReverseLegBending = "testTwo",
-  TEST = "test",
+  Exercise1 = "Exercise1",
+  Exercise2 = "Exercise2",
+  Exercise3 = "Exercise3",
+  Exercise4 = "Exercise4",
+  MAINPAGE = "mainPage",
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-  [AppRoutes.MAIN]: "/",
-  // [AppRoutes.LyingLegLiftingLeft]: "/testOne",
-  // [AppRoutes.ReverseLegBending]: "/testTwo",
-  [AppRoutes.TEST]: "/test",
+  [AppRoutes.Exercise1]: "/Exercise1",
+  [AppRoutes.Exercise2]: "/Exercise2",
+  [AppRoutes.Exercise3]: "/Exercise3",
+  [AppRoutes.Exercise4]: "/Exercise4",
+  [AppRoutes.MAINPAGE]: "/",
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
-  [AppRoutes.MAIN]: {
-    path: RoutePath.main,
-    element: <MainPage />,
+  [AppRoutes.Exercise1]: {
+    path: RoutePath.Exercise1,
+    element: <FirstEx />,
   },
 
-  // [AppRoutes.LyingLegLiftingLeft]: {
-  //   path: RoutePath.testOne,
-  //   element: <LyingLegLifting />,
-  // },
+  [AppRoutes.Exercise2]: {
+    path: RoutePath.Exercise2,
+    element: <SecondEx />,
+  },
 
-  // [AppRoutes.ReverseLegBending]: {
-  //   path: RoutePath.testTwo,
-  //   element: <ReverseLegBending />,
-  // },
+  [AppRoutes.Exercise3]: {
+    path: RoutePath.Exercise3,
+    element: <ThirdEx />,
+  },
 
-  [AppRoutes.TEST]: {
-    path: RoutePath.test,
-    element: <ExerciseOnePage />,
+  [AppRoutes.Exercise4]: {
+    path: RoutePath.Exercise4,
+    element: <FourthEx />,
+  },
+
+  [AppRoutes.MAINPAGE]: {
+    path: RoutePath.mainPage,
+    element: (
+      <MainLayout>
+        <MainPage />
+      </MainLayout>
+    ),
   },
 };

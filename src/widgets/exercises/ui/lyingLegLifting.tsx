@@ -49,7 +49,7 @@ export const LyingLegLifting: FC<OrderExerciseProps> = ({
 
   const addResult = useCallback(
     (maxBodyAngle: number) =>
-      setResults((prev) => [...prev, 180 - maxBodyAngle]),
+      setResults?.((prev) => [...prev, 180 - maxBodyAngle]),
     [setResults],
   );
 

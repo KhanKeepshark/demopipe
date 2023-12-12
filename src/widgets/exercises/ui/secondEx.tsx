@@ -1,19 +1,16 @@
 import { FC, useCallback, useContext, useMemo, useState } from "react";
-import { LastExerciseProps } from "../models/ExerciseModels";
+import { OrderExerciseProps } from "../models/ExerciseModels";
 import { Exercise } from "@/entities/exercise";
-import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 import { Landmark } from "@mediapipe/tasks-vision";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
-import testTwoVideo from "@/shared/assets/testTwo.mp4";
-import ModelPng from "@/shared/assets/images/SecondTestExerciseModel.png";
+import { ExerciseContext } from "@/shared/contexts/exerciseContext";
+import { FirstExModel, SecondExVideo } from "@/shared/assets";
 
-export const ReverseLegBending: FC<LastExerciseProps> = ({
-  setResults,
-  results,
-}) => {
+export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const [finishLeg, setFinishLeg] = useState(false);
   const [landmarks, setLandmarks] = useState<Landmark[]>();
   const [bodyAngle, setBodyAngle] = useState(0);
+  const [anotherLeg, setAnotherLeg] = useState(0);
   const [checkLegAngle, setCheckLegAngle] = useState(0);
   const { isMobile } = useContext(ExerciseContext);
 
@@ -25,17 +22,23 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
         point2: 23,
         point3: 25,
         setAngle: setBodyAngle,
+        invisible: true,
         getlandmarks: {
-          landmarks: [0, 30],
+          landmarks: [0, 29],
           setLandmarks,
         },
-        invisible: true,
       },
       {
         point1: 23,
         point2: 25,
         point3: 27,
         setAngle: setCheckLegAngle,
+      },
+      {
+        point1: 24,
+        point2: 26,
+        point3: 28,
+        setAngle: setAnotherLeg,
       },
     ],
     [],
@@ -50,19 +53,17 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
   const leftPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
-      landmarks?.[0].x > 0.6 &&
-      landmarks?.[0].y > 0.5 &&
+      landmarks?.[0].x > 0.7 &&
+      landmarks?.[0].y < 0.4 &&
       landmarks?.[1].y < 1 &&
-      bodyAngle > 150 &&
       isMobile
     ) {
       return true;
     } else if (
       landmarks &&
-      landmarks?.[0].x < 0.3 &&
+      landmarks?.[0].x > 0.7 &&
       landmarks?.[0].y > 0.6 &&
-      landmarks?.[1].y < 1 &&
-      bodyAngle > 150
+      landmarks?.[1].y < 1
     ) {
       return true;
     } else {
@@ -78,17 +79,23 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
         point2: 24,
         point3: 26,
         setAngle: setBodyAngle,
+        invisible: true,
         getlandmarks: {
-          landmarks: [0, 30],
+          landmarks: [0, 29],
           setLandmarks,
         },
-        invisible: true,
       },
       {
         point1: 24,
         point2: 26,
         point3: 28,
         setAngle: setCheckLegAngle,
+      },
+      {
+        point1: 23,
+        point2: 25,
+        point3: 27,
+        setAngle: setAnotherLeg,
       },
     ],
     [],
@@ -97,19 +104,17 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
   const rightPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
-      landmarks?.[0].x > 0.6 &&
-      landmarks?.[0].y < 0.5 &&
+      landmarks?.[0].x < 0.3 &&
+      landmarks?.[0].y < 0.4 &&
       landmarks?.[1].y < 1 &&
-      bodyAngle > 150 &&
       isMobile
     ) {
       return true;
     } else if (
       landmarks &&
-      landmarks?.[0].x > 0.7 &&
+      landmarks?.[0].x < 0.3 &&
       landmarks?.[0].y > 0.6 &&
-      landmarks?.[1].y < 1 &&
-      bodyAngle > 150
+      landmarks?.[1].y < 1
     ) {
       return true;
     } else {
@@ -119,30 +124,33 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
 
   // all
   const exerciseCycleCondition = useMemo(
-    () => [checkLegAngle < 110, checkLegAngle > 150],
-    [checkLegAngle],
+    () => [
+      checkLegAngle < 70 && anotherLeg < 70,
+      checkLegAngle > 170 && anotherLeg > 170,
+    ],
+    [checkLegAngle, anotherLeg],
   );
 
   const exercisePlayCondition = useMemo(() => {
-    const bodyAngleCondition = isMobile ? 140 : 150;
+    const bodyAngleCondition = isMobile ? 170 : 178;
     return bodyAngle > bodyAngleCondition;
   }, [bodyAngle, isMobile]);
 
   return finishLeg ? (
     <Exercise
       key="right"
+      setFinish={setFinish}
       repeatTarget={3}
       landmarks={landmarks}
       addResult={addResult}
       bodyAngle={bodyAngle}
       landmarksList={rightBodyPartLists}
       poseCheckCondition={rightPoseCheckCondition}
-      img={ModelPng}
-      videoModel={testTwoVideo}
-      results={results}
+      img={FirstExModel}
+      videoModel={SecondExVideo}
+      right
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      right
     />
   ) : (
     <Exercise
@@ -154,10 +162,10 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
       bodyAngle={bodyAngle}
       landmarksList={leftBodyPartLists}
       poseCheckCondition={leftPoseCheckCondition}
+      img={FirstExModel}
+      videoModel={SecondExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      img={ModelPng}
-      videoModel={testTwoVideo}
     />
   );
 };
