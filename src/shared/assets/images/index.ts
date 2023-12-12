@@ -7,6 +7,7 @@ import cardImg2 from "./cardImg2.png";
 import FirstExModel from "./FirstEx.png";
 import FourthExModel from "./FourthEx.png";
 import ThirdExModel from "./ThirdEx.png";
+import Test2Model from "./test2Model.png";
 
 export {
   Carousel1,
@@ -18,4 +19,5 @@ export {
   FirstExModel,
   FourthExModel,
   ThirdExModel,
+  Test2Model,
 };

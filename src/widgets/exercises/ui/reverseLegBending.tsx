@@ -4,8 +4,7 @@ import { Exercise } from "@/entities/exercise";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 import { Landmark } from "@mediapipe/tasks-vision";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
-import testTwoVideo from "@/shared/assets/testTwo.mp4";
-import ModelPng from "@/shared/assets/images/SecondTestExerciseModel.png";
+import { Test2Model, testTwoVideo } from "@/shared/assets";
 
 export const ReverseLegBending: FC<LastExerciseProps> = ({
   setResults,
@@ -137,7 +136,7 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
       bodyAngle={bodyAngle}
       landmarksList={rightBodyPartLists}
       poseCheckCondition={rightPoseCheckCondition}
-      img={ModelPng}
+      img={Test2Model}
       videoModel={testTwoVideo}
       results={results}
       exerciseCycleCondition={exerciseCycleCondition}
@@ -156,7 +155,7 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
       poseCheckCondition={leftPoseCheckCondition}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      img={ModelPng}
+      img={Test2Model}
       videoModel={testTwoVideo}
     />
   );

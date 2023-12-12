@@ -4,8 +4,7 @@ import { Exercise } from "@/entities/exercise";
 import { Landmark } from "@mediapipe/tasks-vision";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
-import testOneVideo from "@/shared/assets/testOne.mp4";
-import ModelPng from "@/shared/assets/images/FirstTestExerciseModel.png";
+import { FirstExModel, testOneVideo } from "@/shared/assets";
 
 export const LyingLegLifting: FC<OrderExerciseProps> = ({
   setResults,
@@ -149,7 +148,7 @@ export const LyingLegLifting: FC<OrderExerciseProps> = ({
       bodyAngle={bodyAngle}
       landmarksList={rightBodyPartLists}
       poseCheckCondition={rightPoseCheckCondition}
-      img={ModelPng}
+      img={FirstExModel}
       videoModel={testOneVideo}
       right
       exerciseCycleCondition={exerciseCycleCondition}
@@ -165,7 +164,7 @@ export const LyingLegLifting: FC<OrderExerciseProps> = ({
       bodyAngle={bodyAngle}
       landmarksList={leftBodyPartLists}
       poseCheckCondition={leftPoseCheckCondition}
-      img={ModelPng}
+      img={FirstExModel}
       videoModel={testOneVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
