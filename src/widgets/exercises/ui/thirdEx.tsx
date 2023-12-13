@@ -82,10 +82,10 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const rightPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
-      landmarks?.[0].x > 0.4 &&
-      landmarks?.[0].x < 0.55 &&
-      landmarks?.[1].y < 1 &&
-      landmarks?.[1].x > 0.6 &&
+      landmarks?.[0].y > 0.4 &&
+      landmarks?.[0].y < 0.65 &&
+      landmarks?.[1].y < 0.4 &&
+      landmarks?.[1].x < 1 &&
       isMobile
     ) {
       return true;
