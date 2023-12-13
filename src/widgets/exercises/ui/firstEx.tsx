@@ -47,9 +47,9 @@ export const FirstEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const leftPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
-      landmarks?.[0].x > 0.7 &&
+      landmarks?.[0].x > 0.6 &&
       landmarks?.[0].y < 0.4 &&
-      landmarks?.[1].y < 1 &&
+      landmarks?.[1].x < 1 &&
       isMobile
     ) {
       return true;
@@ -157,9 +157,9 @@ export const FirstEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
       test={[
-        { el: landmarks?.[0].x > 0.7, key: 1 },
+        { el: landmarks?.[0].x > 0.6, key: 1 },
         { el: landmarks?.[0].y < 0.4, key: 2 },
-        { el: landmarks?.[1].y < 1, key: 3 },
+        { el: landmarks?.[1].x < 1, key: 3 },
       ]}
     />
   );
