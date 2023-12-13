@@ -110,7 +110,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const rightPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
-      landmarks?.[0].x < 0.4 &&
+      landmarks?.[0].x > 0.6 &&
       landmarks?.[0].y > 0.7 &&
       landmarks?.[1].y < 1 &&
       checkLegAngle > 145 &&
