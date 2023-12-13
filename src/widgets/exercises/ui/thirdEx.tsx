@@ -37,13 +37,15 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
     [setResults],
   );
 
+  console.log(landmarks?.[0].x);
+
   const leftPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
-      landmarks?.[0].x > 0.4 &&
-      landmarks?.[0].x < 0.55 &&
-      landmarks?.[1].y < 1 &&
+      landmarks?.[0].x > 0.35 &&
+      landmarks?.[0].x < 0.6 &&
       landmarks?.[1].x < 0.4 &&
+      landmarks?.[1].y < 1 &&
       isMobile
     ) {
       return true;
@@ -76,6 +78,8 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
     ],
     [],
   );
+
+  console.log(landmarks?.[0].x);
 
   const rightPoseCheckCondition = useMemo(() => {
     if (
@@ -150,9 +154,9 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       exercisePlayCondition={exercisePlayCondition}
       test={[
         { el: landmarks?.[0].x > 0.4, key: 1 },
-        { el: landmarks?.[0].x < 0.55, key: 2 },
-        { el: landmarks?.[1].y < 1, key: 3 },
-        { el: landmarks?.[1].x < 0.4, key: 4 },
+        { el: landmarks?.[0].x < 0.65, key: 2 },
+        { el: landmarks?.[1].x < 0.4, key: 3 },
+        { el: landmarks?.[1].y < 1, key: 4 },
       ]}
     />
   );
