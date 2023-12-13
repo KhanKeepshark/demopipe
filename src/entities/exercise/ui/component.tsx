@@ -36,6 +36,7 @@ export const Exercise: FC<ExerciseProps> = ({
   exerciseCycleCondition,
   exercisePlayCondition,
   imgHeight,
+  test,
 }) => {
   const canvasElementRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -178,6 +179,19 @@ export const Exercise: FC<ExerciseProps> = ({
           play={play}
           mirrored={mirrorComponents}
         />
+        <div className="flex absolute top-0 left-28">
+          {test?.map((el) => (
+            <div
+              key={el.key}
+              className={clsx("h-3 w-3 mr-4", {
+                "bg-green-400": el.el,
+                "bg-red": !el.el,
+              })}
+            >
+              {el.key}
+            </div>
+          ))}
+        </div>
         {results?.length === 12 && (
           <ExerciseEnd isMobile={isMobile} angles={results} />
         )}

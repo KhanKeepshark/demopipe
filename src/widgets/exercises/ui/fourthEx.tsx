@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { FC, useCallback, useContext, useMemo, useState } from "react";
 import { OrderExerciseProps } from "../models/ExerciseModels";
 import { Exercise } from "@/entities/exercise";
@@ -157,6 +158,13 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       right
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
+      test={[
+        { el: landmarks?.[0].x < 0.3, key: 1 },
+        { el: landmarks?.[0].y > 0.7, key: 2 },
+        { el: landmarks?.[1].y < 1, key: 3 },
+        { el: anotherLeg < 100, key: 4 },
+        { el: checkLegAngle > 155, key: 5 },
+      ]}
     />
   ) : (
     <Exercise
@@ -172,6 +180,13 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       videoModel={FourthExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
+      test={[
+        { el: landmarks?.[0].x > 0.7, key: 1 },
+        { el: landmarks?.[0].y < 0.4, key: 2 },
+        { el: landmarks?.[1].y < 1, key: 3 },
+        { el: anotherLeg < 100, key: 4 },
+        { el: checkLegAngle > 155, key: 5 },
+      ]}
     />
   );
 };

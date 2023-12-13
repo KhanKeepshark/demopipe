@@ -17,4 +17,5 @@ export interface ExerciseProps {
   results?: number[];
   exerciseCycleCondition: boolean[];
   exercisePlayCondition: boolean;
+  test?: { el: boolean; key: number }[];
 }

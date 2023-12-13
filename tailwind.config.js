@@ -29,6 +29,12 @@ export default {
       backgroundImage: {
         exerciseBgImg: "url('/src/shared/assets/images/exerciseBgImg.jpeg')",
       },
+      spacing: {
+        0.1: "1px",
+      },
+      rotate: {
+        120: "120deg",
+      },
     },
   },
   plugins: [],
