@@ -69,7 +69,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       landmarks?.[0].y > 0.6 &&
       landmarks?.[1].y < 1 &&
       anotherLeg < 100 &&
-      checkLegAngle > 155
+      checkLegAngle > 145
     ) {
       return true;
     } else {
@@ -113,7 +113,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       landmarks?.[0].x < 0.4 &&
       landmarks?.[0].y > 0.7 &&
       landmarks?.[1].y < 1 &&
-      checkLegAngle > 155 &&
+      checkLegAngle > 145 &&
       anotherLeg < 100 &&
       isMobile
     ) {
@@ -140,10 +140,9 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
 
   const exercisePlayCondition = useMemo(() => {
     const bodyAngleCondition = isMobile ? 170 : 178;
-    return bodyAngle > bodyAngleCondition && anotherLeg < 80;
+    const anotherLegCondition = isMobile ? 100 : 80;
+    return bodyAngle > bodyAngleCondition && anotherLeg < anotherLegCondition;
   }, [bodyAngle, isMobile, anotherLeg]);
-
-  console.log(landmarks?.[0].x);
 
   return finishLeg ? (
     <Exercise
@@ -165,7 +164,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
         { el: landmarks?.[0].y > 0.7, key: 2 },
         { el: landmarks?.[1].y < 1, key: 3 },
         { el: anotherLeg < 100, key: 4 },
-        { el: checkLegAngle > 155, key: 5 },
+        { el: checkLegAngle > 145, key: 5 },
       ]}
     />
   ) : (
@@ -187,7 +186,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
         { el: landmarks?.[0].y < 0.4, key: 2 },
         { el: landmarks?.[1].y < 1, key: 3 },
         { el: anotherLeg < 100, key: 4 },
-        { el: checkLegAngle > 155, key: 5 },
+        { el: checkLegAngle > 145, key: 5 },
       ]}
     />
   );

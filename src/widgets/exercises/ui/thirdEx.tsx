@@ -77,8 +77,6 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
     [],
   );
 
-  console.log(landmarks?.[0].x);
-
   const rightPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
