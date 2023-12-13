@@ -55,7 +55,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const leftPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
-      landmarks?.[0].x > 0.7 &&
+      landmarks?.[0].x > 0.6 &&
       landmarks?.[0].y < 0.4 &&
       landmarks?.[1].y < 1 &&
       checkLegAngle > 155 &&
@@ -110,7 +110,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const rightPoseCheckCondition = useMemo(() => {
     if (
       landmarks &&
-      landmarks?.[0].x > 0.7 &&
+      landmarks?.[0].x < 0.4 &&
       landmarks?.[0].y > 0.7 &&
       landmarks?.[1].y < 1 &&
       checkLegAngle > 155 &&
@@ -143,6 +143,8 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
     return bodyAngle > bodyAngleCondition && anotherLeg < 80;
   }, [bodyAngle, isMobile, anotherLeg]);
 
+  console.log(landmarks?.[0].x);
+
   return finishLeg ? (
     <Exercise
       key="right"
@@ -159,7 +161,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
       test={[
-        { el: landmarks?.[0].x < 0.3, key: 1 },
+        { el: landmarks?.[0].x < 0.4, key: 1 },
         { el: landmarks?.[0].y > 0.7, key: 2 },
         { el: landmarks?.[1].y < 1, key: 3 },
         { el: anotherLeg < 100, key: 4 },
@@ -181,7 +183,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
       test={[
-        { el: landmarks?.[0].x > 0.7, key: 1 },
+        { el: landmarks?.[0].x > 0.6, key: 1 },
         { el: landmarks?.[0].y < 0.4, key: 2 },
         { el: landmarks?.[1].y < 1, key: 3 },
         { el: anotherLeg < 100, key: 4 },
