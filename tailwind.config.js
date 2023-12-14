@@ -21,7 +21,8 @@ export default {
         gray: "#535353",
       },
       fontFamily: {
-        sansArial: "Arial,sans-serif",
+        sansArial: "Arial, sans-serif",
+        mulish: "Mulish, Arial, sans-serif",
       },
       boxShadow: {
         all: "0px 0px 10px 0px rgba(0, 0, 0, 0.3)",

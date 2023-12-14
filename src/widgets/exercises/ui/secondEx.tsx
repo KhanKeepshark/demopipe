@@ -152,11 +152,6 @@ export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       right
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      test={[
-        { el: landmarks?.[0].x > 0.6, key: 1 },
-        { el: landmarks?.[0].y > 0.6, key: 2 },
-        { el: landmarks?.[1].x < 1, key: 3 },
-      ]}
     />
   ) : (
     <Exercise
@@ -172,11 +167,6 @@ export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       videoModel={SecondExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      test={[
-        { el: landmarks?.[0].x > 0.6, key: 1 },
-        { el: landmarks?.[0].y < 0.4, key: 2 },
-        { el: landmarks?.[1].x < 1, key: 3 },
-      ]}
     />
   );
 };

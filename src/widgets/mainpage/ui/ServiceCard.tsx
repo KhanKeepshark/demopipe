@@ -17,7 +17,7 @@ export const ServiceCard: FC<ServiceCardProps> = ({
         <div className=" text-brand-dark text-lg font-bold">{title}</div>
         <div className="text-sm my-4">{description}</div>
         <Link
-          className=" text-brand-orange font-bold text-sm items-center flex group"
+          className="text-brand-orange font-bold text-sm items-center flex group"
           to={buttonLink}
         >
           {buttonText}

@@ -159,13 +159,6 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       right
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      test={[
-        { el: landmarks?.[0].x < 0.4, key: 1 },
-        { el: landmarks?.[0].y > 0.7, key: 2 },
-        { el: landmarks?.[1].y < 1, key: 3 },
-        { el: anotherLeg < 110, key: 4 },
-        { el: checkLegAngle > 145, key: 5 },
-      ]}
     />
   ) : (
     <Exercise
@@ -181,13 +174,6 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       videoModel={FourthExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      test={[
-        { el: landmarks?.[0].x > 0.6, key: 1 },
-        { el: landmarks?.[0].y < 0.4, key: 2 },
-        { el: landmarks?.[1].y < 1, key: 3 },
-        { el: anotherLeg < 110, key: 4 },
-        { el: checkLegAngle > 145, key: 5 },
-      ]}
     />
   );
 };

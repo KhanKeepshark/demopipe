@@ -126,12 +126,6 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       right
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      test={[
-        { el: landmarks?.[0].x > 0.4, key: 1 },
-        { el: landmarks?.[0].x < 0.55, key: 2 },
-        { el: landmarks?.[1].y < 1, key: 3 },
-        { el: landmarks?.[1].x > 0.6, key: 4 },
-      ]}
     />
   ) : (
     <Exercise
@@ -148,12 +142,6 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       videoModel={ThirdExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
-      test={[
-        { el: landmarks?.[0].y > 0.4, key: 1 },
-        { el: landmarks?.[0].y < 0.65, key: 2 },
-        { el: landmarks?.[1].y > 0.6, key: 3 },
-        { el: landmarks?.[1].x < 1, key: 4 },
-      ]}
     />
   );
 };

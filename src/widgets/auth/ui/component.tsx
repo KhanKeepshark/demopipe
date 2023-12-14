@@ -1,4 +1,4 @@
-import { AuthTab, Button, Input } from "@/shared/components";
+import { AuthTab, Button, Input, LinkButton } from "@/shared/components";
 import { Checkbox } from "antd";
 import { FC, useState } from "react";
 
@@ -13,20 +13,21 @@ export const AuthWidget: FC = () => {
           tab1="Пользователь"
           tab2="Врач"
         />
-        <Input className="mt-10 border-black" placeholder="ИМЯ ФАМИЛИЯ" />
+        <Input className="mt-10 border-black" placeholder="ИМЯ" />
+        <Input className="mt-3 border-black" placeholder="ФАМИЛИЯ" />
         <Input className="mt-3 border-black" placeholder="ТЕЛЕФОН" />
         <Input className="mt-3 border-black" placeholder="ЭЛЕКТРОННАЯ ПОЧТА" />
+        <Input className="mt-3 border-black" placeholder="СОЗДАТЬ ПАРОЛЬ" />
         <Button gradient className="mt-6">
           ЗАРЕГИСТРИРОВАТЬСЯ
         </Button>
         <div className="flex items-start mt-7 relative">
           <Checkbox className="absolute -left-6" />
           <div className="text-center text-sm">
-            С условиями{" "}
-            <span className=" text-brand-gradient1 cursor-pointer">
-              Пользования
-            </span>{" "}
-            и<a className="ml-1">Обработки Персональных Данных</a>
+            <LinkButton to="/confidential">Пользования</LinkButton>и
+            <LinkButton to="/useragreement">
+              Обработки Персональных Данных
+            </LinkButton>
             ознакомлен и полностью согласен
           </div>
         </div>
