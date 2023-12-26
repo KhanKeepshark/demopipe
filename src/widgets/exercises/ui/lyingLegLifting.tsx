@@ -5,6 +5,7 @@ import { Landmark } from "@mediapipe/tasks-vision";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 import { FirstExModel, testOneVideo } from "@/shared/assets";
+import { repeatTarget } from "@/shared/utils/const/const";
 
 export const LyingLegLifting: FC<OrderExerciseProps> = ({
   setResults,
@@ -142,7 +143,7 @@ export const LyingLegLifting: FC<OrderExerciseProps> = ({
     <Exercise
       key="right"
       setFinish={setFinish}
-      repeatTarget={3}
+      repeatTarget={repeatTarget}
       landmarks={landmarks}
       addResult={addResult}
       bodyAngle={bodyAngle}
@@ -158,7 +159,7 @@ export const LyingLegLifting: FC<OrderExerciseProps> = ({
     <Exercise
       key="left"
       setFinish={setFinishLeg}
-      repeatTarget={3}
+      repeatTarget={repeatTarget}
       landmarks={landmarks}
       addResult={addResult}
       bodyAngle={bodyAngle}

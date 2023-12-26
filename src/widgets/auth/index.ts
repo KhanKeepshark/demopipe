@@ -1,1 +1,2 @@
-export * from "./ui/component";
+export * from "./registration";
+export * from "./authorization";

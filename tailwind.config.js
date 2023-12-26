@@ -19,6 +19,7 @@ export default {
           aquaLigt: "#f2f7fa",
         },
         gray: "#535353",
+        secondary: "#d9d9d9",
       },
       fontFamily: {
         sansArial: "Arial, sans-serif",
@@ -35,6 +36,162 @@ export default {
       },
       rotate: {
         120: "120deg",
+      },
+      fontSize: {
+        Regular10: [
+          "0.625rem",
+          {
+            lineHeight: ".75rem",
+            fontWeight: "400",
+          },
+        ],
+        Regular11: [
+          "0.6875rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "400",
+          },
+        ],
+        Regular12: [
+          "0.75rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "400",
+          },
+        ],
+        Regular14: [
+          "0.875rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "400",
+          },
+        ],
+        Regular16: [
+          "1rem",
+          {
+            lineHeight: "1.25rem",
+            fontWeight: "400",
+          },
+        ],
+        Medium12: [
+          "0.75rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "500",
+          },
+        ],
+        Medium14: [
+          "0.875rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "500",
+          },
+        ],
+        Medium16: [
+          "1rem",
+          {
+            lineHeight: "1.25rem",
+            fontWeight: "500",
+          },
+        ],
+        Medium32: [
+          "2rem",
+          {
+            lineHeight: "2.375rem",
+            fontWeight: "500",
+          },
+        ],
+        Semibold11: [
+          "0.6875rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "600",
+          },
+        ],
+        Semibold12: [
+          "0.75rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "600",
+          },
+        ],
+        Semibold16: [
+          "1rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "600",
+          },
+        ],
+        Semibold20: [
+          "1.25rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "600",
+          },
+        ],
+        Semibold48: [
+          "3rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "600",
+          },
+        ],
+        Bold11: [
+          "0.6875rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "700",
+          },
+        ],
+        Bold12: [
+          "0.75rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "700",
+          },
+        ],
+        Bold14: [
+          "0.875rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "700",
+          },
+        ],
+        Bold16: [
+          "1rem",
+          {
+            lineHeight: "1.25rem",
+            fontWeight: "700",
+          },
+        ],
+        Bold20: [
+          "1.25rem",
+          {
+            lineHeight: "1.5rem",
+            fontWeight: "700",
+          },
+        ],
+        Bold24: [
+          "1.5rem",
+          {
+            lineHeight: "1.75rem",
+            fontWeight: "700",
+          },
+        ],
+        Bold32: [
+          "2rem",
+          {
+            lineHeight: "normal",
+            fontWeight: "700",
+          },
+        ],
+        Bold42: [
+          "2.625rem",
+          {
+            lineHeight: "normal",
+            fontWeight: "700",
+          },
+        ],
       },
     },
   },

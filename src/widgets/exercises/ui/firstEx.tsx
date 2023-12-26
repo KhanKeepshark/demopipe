@@ -6,6 +6,7 @@ import { Landmark } from "@mediapipe/tasks-vision";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 import { FirstExModel, FirstExVideo } from "@/shared/assets";
+import { repeatTarget } from "@/shared/utils/const/const";
 
 export const FirstEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const [finishLeg, setFinishLeg] = useState(false);
@@ -125,7 +126,7 @@ export const FirstEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
     <Exercise
       key="right"
       setFinish={setFinish}
-      repeatTarget={3}
+      repeatTarget={repeatTarget}
       landmarks={landmarks}
       addResult={addResult}
       bodyAngle={bodyAngle}
@@ -141,7 +142,7 @@ export const FirstEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
     <Exercise
       key="left"
       setFinish={setFinishLeg}
-      repeatTarget={3}
+      repeatTarget={repeatTarget}
       landmarks={landmarks}
       addResult={addResult}
       bodyAngle={bodyAngle}

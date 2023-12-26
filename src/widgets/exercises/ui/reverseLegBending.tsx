@@ -5,6 +5,7 @@ import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 import { Landmark } from "@mediapipe/tasks-vision";
 import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import { Test2Model, testTwoVideo } from "@/shared/assets";
+import { repeatTarget } from "@/shared/utils/const/const";
 
 export const ReverseLegBending: FC<LastExerciseProps> = ({
   setResults,
@@ -130,7 +131,7 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
   return finishLeg ? (
     <Exercise
       key="right"
-      repeatTarget={3}
+      repeatTarget={repeatTarget}
       landmarks={landmarks}
       addResult={addResult}
       bodyAngle={bodyAngle}
@@ -147,7 +148,7 @@ export const ReverseLegBending: FC<LastExerciseProps> = ({
     <Exercise
       key="left"
       setFinish={setFinishLeg}
-      repeatTarget={3}
+      repeatTarget={repeatTarget}
       landmarks={landmarks}
       addResult={addResult}
       bodyAngle={bodyAngle}

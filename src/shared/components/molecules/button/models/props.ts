@@ -11,4 +11,5 @@ export interface ButtonProps {
   children: ReactElement | string;
   className?: string;
   gradient?: boolean;
+  onClick?: () => void;
 }

@@ -2,7 +2,12 @@ import clsx from "clsx";
 import { FC } from "react";
 import { ButtonProps } from "../models/props";
 
-export const Button: FC<ButtonProps> = ({ children, className, gradient }) => {
+export const Button: FC<ButtonProps> = ({
+  children,
+  className,
+  gradient,
+  onClick,
+}) => {
   return (
     <div
       className={clsx(
@@ -13,6 +18,7 @@ export const Button: FC<ButtonProps> = ({ children, className, gradient }) => {
         },
         className,
       )}
+      onClick={onClick}
     >
       {children}
     </div>

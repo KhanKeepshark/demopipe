@@ -1,9 +1,11 @@
 import { RouteProps } from "react-router-dom";
-import { MainPage, Confidential } from "@/pages";
+import { MainPage } from "@/pages";
 import { MainLayout } from "@/shared/layout";
 import { FourthEx, FirstEx, ThirdEx, SecondEx } from "@/widgets/exercises";
-import { AuthWidget } from "@/widgets/auth";
-import { Useragreement } from "@/pages/Useragreement/Useragreement";
+import { AccountPage } from "@/pages/Account";
+import { LoginLayout } from "@/shared/layout/LoginLayout";
+import { ExercisesWidget } from "@/widgets/accountpages";
+import { authRouteConfig } from "./routes/authorization";
 
 export enum AppRoutes {
   // Exercise
@@ -13,10 +15,9 @@ export enum AppRoutes {
   Exercise4 = "Exercise4",
   // Main
   MAINPAGE = "mainPage",
-  // Auth
-  AUTH = "auth",
-  Confidential = "confidential",
-  Useragreement = "useragreement",
+  // Account
+  Account = "account",
+  Exercises = "exercises",
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -27,10 +28,9 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.Exercise4]: "/Exercise4",
   // Main
   [AppRoutes.MAINPAGE]: "/",
-  // Auth
-  [AppRoutes.AUTH]: "/auth",
-  [AppRoutes.Confidential]: "/confidential",
-  [AppRoutes.Useragreement]: "/useragreement",
+  // Account
+  [AppRoutes.Account]: "/account",
+  [AppRoutes.Exercises]: "/exercises",
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -56,19 +56,25 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   },
 
   // Auth
-  [AppRoutes.AUTH]: {
-    path: RoutePath.auth,
-    element: <AuthWidget />,
+  ...authRouteConfig,
+
+  // Account
+  [AppRoutes.Account]: {
+    path: RoutePath.account,
+    element: (
+      <LoginLayout>
+        <AccountPage />
+      </LoginLayout>
+    ),
   },
 
-  [AppRoutes.Confidential]: {
-    path: RoutePath.confidential,
-    element: <Confidential />,
-  },
-
-  [AppRoutes.Useragreement]: {
-    path: RoutePath.useragreement,
-    element: <Useragreement />,
+  [AppRoutes.Exercises]: {
+    path: RoutePath.exercises,
+    element: (
+      <LoginLayout>
+        <ExercisesWidget />
+      </LoginLayout>
+    ),
   },
 
   // Main

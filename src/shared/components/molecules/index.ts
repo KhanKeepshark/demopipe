@@ -5,3 +5,4 @@ export * from "./videoModel";
 export * from "./notification";
 export * from "./button";
 export * from "./input";
+export * from "./upload";
