@@ -4,6 +4,8 @@ import type { FC } from "react";
 import { useContext, useState } from "react";
 import dayjs from "dayjs";
 import { UserContext } from "@/shared/contexts";
+import { useQuery } from "react-query";
+import { otherApi } from "@/shared/api/otherApi";
 
 const InputsData = [
   {
@@ -39,7 +41,24 @@ const InputsData = [
 export const AccountPageWidget: FC = () => {
   const [phone, setPhone] = useState("");
   const { user } = useContext(UserContext);
-  console.log(user);
+  // TODO: change when Egor fix rests
+  const { data: doctorData } = useQuery(
+    ["getDoctorDataById"],
+    () => otherApi.getDoctorById(user?.role_id ?? "").then((res) => res.data),
+    {
+      enabled: user?.role === "doctor",
+    },
+  );
+
+  const { data: patientData } = useQuery(
+    ["getPatientDataById"],
+    () =>
+      otherApi.getDoctorPatientId(user?.role_id ?? "").then((res) => res.data),
+    {
+      enabled: user?.role === "patient",
+    },
+  );
+
   return (
     <div>
       <div className="text-Bold16">Ваши Личные Данные</div>
@@ -57,7 +76,6 @@ export const AccountPageWidget: FC = () => {
             />
           </div>
         ))}
-
         <div className="flex items-center justify-between max-w-[550px] mt-3">
           <div className="text-Bold16">НОМЕР ТЕЛЕФОНА</div>
           <InputPhone
@@ -81,13 +99,10 @@ export const AccountPageWidget: FC = () => {
         </div>
         <div className="flex items-center justify-between max-w-[550px] mt-3">
           <div className="text-Bold16">ЛИЦЕНЗИЯ</div>
-          <embed src="Alikhan Utegen.pdf" width="80px" />
           <FileUpload title="Загрузить лицензию" />
         </div>
         <div className="flex justify-center mt-10">
-          <Button className="py-1" gradient>
-            СОХРАНИТЬ
-          </Button>
+          <Button className="py-1">СОХРАНИТЬ</Button>
         </div>
       </div>
     </div>

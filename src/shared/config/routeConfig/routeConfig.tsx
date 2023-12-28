@@ -1,10 +1,10 @@
-import { RouteProps } from "react-router-dom";
+import type { RouteProps } from "react-router-dom";
 import { MainPage } from "@/pages";
 import { MainLayout } from "@/shared/layout";
 import { FourthEx, FirstEx, ThirdEx, SecondEx } from "@/widgets/exercises";
 import { AccountPage } from "@/pages/Account";
 import { LoginLayout } from "@/shared/layout/LoginLayout";
-import { ExercisesWidget } from "@/widgets/accountpages";
+import { ExerciseByIdWidget, ExercisesWidget } from "@/widgets/accountpages";
 import { authRouteConfig } from "./routes/authorization";
 
 export enum AppRoutes {
@@ -18,6 +18,7 @@ export enum AppRoutes {
   // Account
   Account = "account",
   Exercises = "exercises",
+  ExerciseById = "exerciseById",
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -31,6 +32,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   // Account
   [AppRoutes.Account]: "/account",
   [AppRoutes.Exercises]: "/exercises",
+  [AppRoutes.ExerciseById]: "/exercises/:id",
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -73,6 +75,15 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     element: (
       <LoginLayout>
         <ExercisesWidget />
+      </LoginLayout>
+    ),
+  },
+
+  [AppRoutes.ExerciseById]: {
+    path: RoutePath.exerciseById,
+    element: (
+      <LoginLayout>
+        <ExerciseByIdWidget />
       </LoginLayout>
     ),
   },

@@ -1,8 +1,8 @@
-import { AxiosResponse } from "axios";
+import type { AxiosResponse } from "axios";
 import { api } from "./instance";
 
 export const otherApi = {
-  getDoctorById(id_doctor: any) {
+  getDoctorById(id_doctor: string) {
     return api.post("/route_functions/doctor", { id_doctor });
   },
   getDoctorPatientId(id_doctor: string) {

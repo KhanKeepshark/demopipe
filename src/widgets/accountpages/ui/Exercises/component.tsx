@@ -1,5 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { test1 } from "@/shared/assets";
+import { useNavigate } from "react-router-dom";
 
 const Exercises = [
   {
@@ -35,6 +36,7 @@ const Exercises = [
 ];
 
 export const ExercisesWidget: FC = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="text-Bold16">Библиотека Упражнении</div>
@@ -43,6 +45,7 @@ export const ExercisesWidget: FC = () => {
           <div
             className="flex items-center gap-6 mb-6 hover:bg-slate-300 cursor-pointer"
             key={exer.text}
+            onClick={() => navigate("1")}
           >
             <img className="w-24 " src={exer.img} alt="" />
             <div>

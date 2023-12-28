@@ -1,8 +1,9 @@
 import { AuthTab, Button, Input, LinkButton } from "@/shared/components";
-import { FC, useCallback, useState } from "react";
+import type { FC } from "react";
+import { useCallback, useState } from "react";
 import { Button as AntButton } from "antd";
 import { Controller, useForm } from "react-hook-form";
-import { UserRegisterData } from "../models/RegistationModel";
+import type { UserRegisterData } from "../models/RegistationModel";
 import { authApi } from "@/shared/api/authApi";
 import { useNavigate } from "react-router-dom";
 import { Checkbox } from "@/shared/components/atoms/checkbox";

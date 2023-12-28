@@ -19,6 +19,7 @@ export default {
           aquaLigt: "#f2f7fa",
         },
         gray: "#535353",
+        darkBlue: "#0067C6",
         secondary: "#d9d9d9",
       },
       fontFamily: {
