@@ -6,6 +6,7 @@ import clsx from "clsx";
 export const Input: FC<inputTextProps> = ({
   errorMessage,
   wrapperClassName,
+  type,
   ...rest
 }) => {
   return (
@@ -14,7 +15,11 @@ export const Input: FC<inputTextProps> = ({
         "w-full": !wrapperClassName,
       })}
     >
-      <AntInput status={errorMessage ? "error" : ""} {...rest} />
+      {type === "password" ? (
+        <AntInput.Password status={errorMessage ? "error" : ""} {...rest} />
+      ) : (
+        <AntInput type={type} status={errorMessage ? "error" : ""} {...rest} />
+      )}
       <div className="text-Regular12 text-red">{errorMessage}</div>
     </div>
   );

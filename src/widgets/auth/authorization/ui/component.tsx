@@ -1,10 +1,12 @@
 import { AuthTab, Button, Input } from "@/shared/components";
-import { FC, useCallback, useState } from "react";
+import type { FC } from "react";
+import { useCallback, useContext, useState } from "react";
 import { Button as AntButton } from "antd";
 import { Controller, useForm } from "react-hook-form";
-import { UserAuthorizationData } from "../models/AuthorizationModel";
+import type { UserAuthorizationData } from "../models/AuthorizationModel";
 import { authApi } from "@/shared/api/authApi";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "@/shared/contexts";
 
 export const AuthorizationWidget: FC = () => {
   const [doctorAuth, setDoctorAuth] = useState(false);
@@ -15,23 +17,23 @@ export const AuthorizationWidget: FC = () => {
     formState: { errors },
   } = useForm<UserAuthorizationData>();
 
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const onSubmit = useCallback(
     async (data: UserAuthorizationData) => {
-      if (doctorAuth) {
-        const user = await authApi.authByLogin(data);
-        console.log(user);
-      } else {
-        await authApi.registerUser(data);
-        const user = await authApi.authByLogin(data);
-        console.log(user);
-      }
-
+      const user = await authApi
+        .authByLogin(data)
+        .then((res) => res.data.userData.user);
+      setUser({
+        role: user.role,
+        role_id: user.role_id,
+        user_id: user.userid,
+      });
       navigate("/account");
     },
     [doctorAuth],
   );
-
-  const navigate = useNavigate();
 
   return (
     <div className="h-screen flex justify-center items-center">
@@ -62,7 +64,8 @@ export const AuthorizationWidget: FC = () => {
           render={({ field }) => (
             <Input
               className="mt-3 border-black"
-              placeholder="СОЗДАТЬ ПАРОЛЬ"
+              placeholder="ПАРОЛЬ"
+              type="password"
               errorMessage={errors?.password?.message}
               {...field}
             />

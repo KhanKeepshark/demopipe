@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 import {
   getRefreshToken,
   removeAuthToken,
@@ -8,7 +8,9 @@ import {
 import { api } from "./instance";
 
 export const authApi = {
-  authByLogin(data) {
+  authByLogin(
+    data,
+  ): Promise<AxiosResponse<{ message: string; userData: string }>> {
     return api.post("/login", data);
   },
   registerDoctor(data) {

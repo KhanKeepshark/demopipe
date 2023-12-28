@@ -36,5 +36,6 @@ module.exports = {
     ],
     "react/react-in-jsx-scope": 0,
     "react/jsx-no-comment-textnodes": 0,
+    "@typescript-eslint/consistent-type-imports": "warn",
   },
 };
