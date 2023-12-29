@@ -1,7 +1,7 @@
 import { enableCam } from "@/shared/utils/mediaPipeDraw";
 import { FilesetResolver, PoseLandmarker } from "@mediapipe/tasks-vision";
+import type { FC } from "react";
 import {
-  FC,
   useCallback,
   useContext,
   useEffect,
@@ -15,9 +15,10 @@ import {
   Notification,
   VideoModel,
   PurpleLine,
+  ProgressBar,
 } from "@/shared/components";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
-import { ExerciseProps } from "../models/ExerciseProps";
+import type { ExerciseProps } from "../models/ExerciseProps";
 import clsx from "clsx";
 import { ExerciseEnd } from "@/entities/exerciseEnd";
 
@@ -37,6 +38,7 @@ export const Exercise: FC<ExerciseProps> = ({
   exercisePlayCondition,
   imgHeight,
   test,
+  percent,
 }) => {
   const canvasElementRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -202,7 +204,7 @@ export const Exercise: FC<ExerciseProps> = ({
         />
         <img
           className={clsx(
-            "absolute w-[1300px] opacity-50 max-[1090px]:-right-[15%] max-w-[2000px] transform max-[1090px]:w-[160%] max-[1090px]:top-40 max-[1090px]:rotate-90",
+            "absolute w-[1300px] opacity-70 max-[1090px]:-right-[15%] max-w-[2000px] transform max-[1090px]:w-[160%] max-[1090px]:top-40 max-[1090px]:rotate-90",
             imgHeight,
             {
               "transform scale-x-[-1] -right-44": mirrorComponents,
@@ -215,6 +217,14 @@ export const Exercise: FC<ExerciseProps> = ({
         />
         {seconds > 0 && play && (
           <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
+        )}
+        {percent && (
+          <ProgressBar
+            className="absolute left-2 p-2 top-2 bg-black bg-opacity-10 rounded-lg"
+            percent={percent}
+            play={play}
+            title="Левая нога"
+          />
         )}
         <PurpleLine />
         <ExerciseOneControlBlock

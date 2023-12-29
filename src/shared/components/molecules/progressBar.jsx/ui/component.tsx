@@ -1,6 +1,7 @@
 import { Progress } from "antd";
-import { FC, useEffect } from "react";
-import { ProgressBarProps } from "../models/ProgressBarProps";
+import type { FC } from "react";
+import { useEffect } from "react";
+import type { ProgressBarProps } from "../models/ProgressBarProps";
 
 export const ProgressBar: FC<ProgressBarProps> = ({
   className,

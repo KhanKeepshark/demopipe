@@ -1,6 +1,6 @@
-import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
-import { TypeSetState } from "@/shared/utils/types";
-import { Landmark } from "@mediapipe/tasks-vision";
+import type { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
+import type { TypeSetState } from "@/shared/utils/types";
+import type { Landmark } from "@mediapipe/tasks-vision";
 
 export interface ExerciseProps {
   landmarksList: BodyPartLists[];
@@ -18,4 +18,5 @@ export interface ExerciseProps {
   exerciseCycleCondition: boolean[];
   exercisePlayCondition: boolean;
   test?: { el: boolean; key: number }[];
+  percent?: number;
 }

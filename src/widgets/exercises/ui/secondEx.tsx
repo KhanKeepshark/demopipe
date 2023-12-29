@@ -1,9 +1,10 @@
 //@ts-nocheck
-import { FC, useCallback, useContext, useMemo, useState } from "react";
-import { OrderExerciseProps } from "../models/ExerciseModels";
+import type { FC } from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
+import type { OrderExerciseProps } from "../models/ExerciseModels";
 import { Exercise } from "@/entities/exercise";
-import { Landmark } from "@mediapipe/tasks-vision";
-import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
+import type { Landmark } from "@mediapipe/tasks-vision";
+import type { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
 import { ExerciseContext } from "@/shared/contexts/exerciseContext";
 import { FirstExModel, SecondExVideo } from "@/shared/assets";
 import { repeatTarget } from "@/shared/utils/const/const";

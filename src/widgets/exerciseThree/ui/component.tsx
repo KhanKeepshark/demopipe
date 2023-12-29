@@ -1,10 +1,8 @@
 import { enableCam } from "@/shared/utils/mediaPipeDraw";
-import {
-  FilesetResolver,
-  Landmark,
-  PoseLandmarker,
-} from "@mediapipe/tasks-vision";
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { Landmark } from "@mediapipe/tasks-vision";
+import { FilesetResolver, PoseLandmarker } from "@mediapipe/tasks-vision";
+import type { FC } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Timer,
   VideoModel,
@@ -12,8 +10,8 @@ import {
   ProgressBar,
   Notification,
 } from "@/shared/components";
-import { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
-import { ExerciseOneProps } from "../models/ExerciseOneProps";
+import type { BodyPartLists } from "@/shared/utils/mediaPipeDraw/types";
+import type { ExerciseOneProps } from "../models/ExerciseOneProps";
 import nursefullHD from "@/shared/assets/nurse-full-HD.mp4";
 
 const repeatTarget = 10;
