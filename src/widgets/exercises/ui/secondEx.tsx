@@ -16,6 +16,7 @@ export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const [anotherLeg, setAnotherLeg] = useState(0);
   const [checkLegAngle, setCheckLegAngle] = useState(0);
   const { isMobile } = useContext(ExerciseContext);
+  const [percent, setPercent] = useState(0);
 
   // left
   const leftBodyPartLists: BodyPartLists[] = useMemo(
@@ -36,6 +37,9 @@ export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
         point2: 25,
         point3: 27,
         setAngle: setCheckLegAngle,
+        maxValue: 30,
+        minValue: 180,
+        setPercent: setPercent,
       },
       {
         point1: 24,
@@ -93,6 +97,9 @@ export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
         point2: 26,
         point3: 28,
         setAngle: setCheckLegAngle,
+        maxValue: 30,
+        minValue: 180,
+        setPercent: setPercent,
       },
       {
         point1: 23,
@@ -154,6 +161,7 @@ export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       right
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
+      percent={percent}
     />
   ) : (
     <Exercise
@@ -169,6 +177,7 @@ export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       videoModel={SecondExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
+      percent={percent}
     />
   );
 };

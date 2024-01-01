@@ -1,9 +1,6 @@
-import {
-  DrawingUtils,
-  Landmark,
-  PoseLandmarker,
-} from "@mediapipe/tasks-vision";
-import { EnableCamModel, PredictWebcamModel } from "./types";
+import type { Landmark } from "@mediapipe/tasks-vision";
+import { DrawingUtils, PoseLandmarker } from "@mediapipe/tasks-vision";
+import type { EnableCamModel, PredictWebcamModel } from "./types";
 
 let lastVideoTime = -1;
 
@@ -159,12 +156,12 @@ const calculatePercent = (
   maxValue: number,
   minValue: number,
 ) => {
-  return Math.trunc(
-    Math.abs(
-      minValue - calculateAngle(shoulderPoint, elbowPoint, wristPoint)!,
-    ) /
+  const percent = Math.trunc(
+    Math.abs(minValue - calculateAngle(shoulderPoint, elbowPoint, wristPoint)) /
       (Math.abs(maxValue - minValue) / 100),
   );
+
+  return percent;
 };
 
 const calculateAngle = (

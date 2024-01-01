@@ -1,8 +1,9 @@
 import { Button, FileUpload, Input, InputPhone } from "@/shared/components";
 import { DatePicker } from "antd";
 import type { FC } from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import dayjs from "dayjs";
+import { UserContext } from "@/shared/contexts";
 // import { UserContext } from "@/shared/contexts";
 // import { useQuery } from "react-query";
 // import { otherApi } from "@/shared/api/otherApi";
@@ -21,14 +22,6 @@ const InputsData = [
     placeholder: "Андрей",
   },
   {
-    title: "КВАЛИФИКАЦИЯ",
-    placeholder: "Андрей",
-  },
-  {
-    title: "СПЕЦИАЛИЗАЦИЯ",
-    placeholder: "Андрей",
-  },
-  {
     title: "ГОРОД",
     placeholder: "Андрей",
   },
@@ -40,6 +33,7 @@ const InputsData = [
 
 export const AccountPageWidget: FC = () => {
   const [phone, setPhone] = useState("");
+  const { user } = useContext(UserContext);
   // const { user } = useContext(UserContext);
   // TODO: change when Egor fix rests
   // const { data: doctorData } = useQuery(
@@ -92,15 +86,26 @@ export const AccountPageWidget: FC = () => {
             className="w-80"
           />
         </div>
-
-        <div className="flex items-center justify-between max-w-[550px] mt-3">
-          <div className="text-Bold16">СЕРТИФИКАТ</div>
-          <FileUpload title="Загрузить сертификат" />
-        </div>
-        <div className="flex items-center justify-between max-w-[550px] mt-3">
-          <div className="text-Bold16">ЛИЦЕНЗИЯ</div>
-          <FileUpload title="Загрузить лицензию" />
-        </div>
+        {user?.role === "doctor" && (
+          <>
+            <div className="flex items-center justify-between max-w-[550px] mt-3">
+              <div className="text-Bold16">КВАЛИФИКАЦИЯ</div>
+              <Input wrapperClassName="w-fit" className="w-80" />
+            </div>
+            <div className="flex items-center justify-between max-w-[550px] mt-3">
+              <div className="text-Bold16">СПЕЦИАЛИЗАЦИЯ</div>
+              <Input wrapperClassName="w-fit" className="w-80" />
+            </div>
+            <div className="flex items-center justify-between max-w-[550px] mt-3">
+              <div className="text-Bold16">СЕРТИФИКАТ</div>
+              <FileUpload title="Загрузить сертификат" />
+            </div>
+            <div className="flex items-center justify-between max-w-[550px] mt-3">
+              <div className="text-Bold16">ЛИЦЕНЗИЯ</div>
+              <FileUpload title="Загрузить лицензию" />
+            </div>
+          </>
+        )}
         <div className="flex justify-center mt-10">
           <Button className="py-1">СОХРАНИТЬ</Button>
         </div>

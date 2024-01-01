@@ -1,7 +1,9 @@
-import { FC, ReactElement, useMemo } from "react";
+import type { FC, ReactElement } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { Layout, Menu, Avatar } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "@/shared/contexts";
 
 const { Sider } = Layout;
 
@@ -22,6 +24,7 @@ const SidebarNavs = [
 
 export const Sidebar: FC<{ children: ReactElement }> = ({ children }) => {
   const { pathname } = useLocation();
+  const { setUser, setAuthToken, user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const MenuItems = useMemo(
@@ -34,6 +37,10 @@ export const Sidebar: FC<{ children: ReactElement }> = ({ children }) => {
     [],
   );
 
+  const logOut = useCallback(() => {
+    setUser(null), setAuthToken(null), navigate("/authorization");
+  }, []);
+
   return (
     <div className="min-h-screen flex">
       <Sider trigger={null} width={224}>
@@ -41,7 +48,7 @@ export const Sidebar: FC<{ children: ReactElement }> = ({ children }) => {
           <Avatar icon={<UserOutlined />} size={54} className="bg-gray" />
           <div className="mt-1 text-sm">
             Андрей
-            <div>Врач</div>
+            <div>{user?.role === "doctor" ? "Врач" : "Пациент"}</div>
           </div>
         </div>
         <Menu
@@ -52,6 +59,7 @@ export const Sidebar: FC<{ children: ReactElement }> = ({ children }) => {
             {
               key: "exit",
               label: <div className="text-xs">ВЫЙТИ ИЗ СИСТЕМЫ</div>,
+              onClick: () => logOut(),
             },
           ]}
         />

@@ -9,6 +9,10 @@ import FourthExModel from "./FourthEx.png";
 import ThirdExModel from "./ThirdEx.png";
 import Test2Model from "./test2Model.png";
 import test1 from "./test1.png";
+import exer1 from "./exer1.png";
+import exer2 from "./exer2.png";
+import exer3 from "./exer3.png";
+import exer4 from "./exer4.png";
 
 export {
   Carousel1,
@@ -22,4 +26,8 @@ export {
   ThirdExModel,
   Test2Model,
   test1,
+  exer1,
+  exer2,
+  exer3,
+  exer4,
 };

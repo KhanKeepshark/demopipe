@@ -13,6 +13,7 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const [landmarks, setLandmarks] = useState<Landmark[]>();
   const [bodyAngle, setBodyAngle] = useState(0);
   const { isMobile } = useContext(ExerciseContext);
+  const [percent, setPercent] = useState(0);
 
   // left
   const leftBodyPartLists: BodyPartLists[] = useMemo(
@@ -22,6 +23,9 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
         point2: 23,
         point3: 29,
         setAngle: setBodyAngle,
+        maxValue: 100,
+        minValue: 180,
+        setPercent: setPercent,
         getlandmarks: {
           landmarks: [23, 29],
           setLandmarks,
@@ -73,6 +77,9 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
           landmarks: [24, 30],
           setLandmarks,
         },
+        maxValue: 100,
+        minValue: 180,
+        setPercent: setPercent,
       },
     ],
     [],
@@ -127,6 +134,7 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       right
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
+      percent={percent}
     />
   ) : (
     <Exercise
@@ -143,6 +151,7 @@ export const ThirdEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       videoModel={ThirdExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
+      percent={percent}
     />
   );
 };

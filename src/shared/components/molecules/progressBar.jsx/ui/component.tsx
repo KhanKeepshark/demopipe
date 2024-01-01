@@ -15,6 +15,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({
       <div className="font-bold text-blue-100">{title}</div>
       <Progress
         strokeLinecap="butt"
+        className=" [&_.ant-progress-text]:text-white"
         percent={play ? percent : 0}
         size={[300, 20]}
       />

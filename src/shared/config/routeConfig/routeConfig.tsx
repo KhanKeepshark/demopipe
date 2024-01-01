@@ -23,10 +23,10 @@ export enum AppRoutes {
 
 export const RoutePath: Record<AppRoutes, string> = {
   // Exercise
-  [AppRoutes.Exercise1]: "/Exercise1",
-  [AppRoutes.Exercise2]: "/Exercise2",
-  [AppRoutes.Exercise3]: "/Exercise3",
-  [AppRoutes.Exercise4]: "/Exercise4",
+  [AppRoutes.Exercise1]: "/exercise/1",
+  [AppRoutes.Exercise2]: "/exercise/2",
+  [AppRoutes.Exercise3]: "/exercise/3",
+  [AppRoutes.Exercise4]: "/exercise/4",
   // Main
   [AppRoutes.MAINPAGE]: "/",
   // Account

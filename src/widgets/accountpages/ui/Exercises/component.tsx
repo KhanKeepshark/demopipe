@@ -1,37 +1,31 @@
 import type { FC } from "react";
-import { test1 } from "@/shared/assets";
+import { exer1, exer2, exer3, exer4 } from "@/shared/assets";
 import { useNavigate } from "react-router-dom";
 
 const Exercises = [
   {
-    img: test1,
+    img: exer1,
     title: "УПРАЖНЕНИЕ 1",
     text: "Разгибание коленей лежа со скольжением ",
+    link: "1",
   },
   {
-    img: test1,
-    title: "УПРАЖНЕНИЕ 1",
+    img: exer2,
+    title: "УПРАЖНЕНИЕ 2",
     text: "Разгибание коленей лежа со скольжением ",
+    link: "2",
   },
   {
-    img: test1,
-    title: "УПРАЖНЕНИЕ 1",
+    img: exer3,
+    title: "УПРАЖНЕНИЕ 3",
     text: "Разгибание коленей лежа со скольжением ",
+    link: "3",
   },
   {
-    img: test1,
-    title: "УПРАЖНЕНИЕ 1",
+    img: exer4,
+    title: "УПРАЖНЕНИЕ 4",
     text: "Разгибание коленей лежа со скольжением ",
-  },
-  {
-    img: test1,
-    title: "УПРАЖНЕНИЕ 1",
-    text: "Разгибание коленей лежа со скольжением ",
-  },
-  {
-    img: test1,
-    title: "УПРАЖНЕНИЕ 1",
-    text: "Разгибание коленей лежа со скольжением ",
+    link: "4",
   },
 ];
 
@@ -45,7 +39,7 @@ export const ExercisesWidget: FC = () => {
           <div
             className="flex items-center gap-6 mb-6 hover:bg-slate-300 cursor-pointer"
             key={exer.text}
-            onClick={() => navigate("1")}
+            onClick={() => navigate(`/exercise/${exer.link}`)}
           >
             <img className="w-24 " src={exer.img} alt="" />
             <div>

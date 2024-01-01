@@ -220,7 +220,7 @@ export const Exercise: FC<ExerciseProps> = ({
         )}
         {percent && (
           <ProgressBar
-            className="absolute left-2 p-2 top-2 bg-black bg-opacity-10 rounded-lg"
+            className="absolute left-2 p-2 top-2 bg-black bg-opacity-30 rounded-lg"
             percent={percent}
             play={play}
             title="Левая нога"
