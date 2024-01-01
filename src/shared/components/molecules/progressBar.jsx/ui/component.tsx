@@ -12,7 +12,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({
   useEffect(() => {});
   return (
     <div className={className}>
-      <div className="font-bold text-blue-100">{title}</div>
+      {/* <div className="font-bold text-blue-100">{title}</div> */}
       <Progress
         strokeLinecap="butt"
         className=" [&_.ant-progress-text]:text-white"

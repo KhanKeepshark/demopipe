@@ -218,7 +218,7 @@ export const Exercise: FC<ExerciseProps> = ({
         {seconds > 0 && play && (
           <Timer seconds={seconds} setSeconds={setSeconds} play={play} />
         )}
-        {percent && (
+        {percent !== undefined && (
           <ProgressBar
             className="absolute left-2 p-2 top-2 bg-black bg-opacity-30 rounded-lg"
             percent={percent}
