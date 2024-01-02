@@ -13,12 +13,22 @@ const SidebarNavs = [
     link: "/account",
   },
   {
+    title: "БИБЛИОТЕКА УПРАЖНЕНИИ",
+    link: "/exercises",
+  },
+];
+
+const DoctorNavs = [
+  {
     title: "ПАЦИЕНТЫ",
     link: "/patients",
   },
+];
+
+const PatientNavs = [
   {
-    title: "БИБЛИОТЕКА УПРАЖНЕНИИ",
-    link: "/exercises",
+    title: "РЕЗУЛЬТАТЫ",
+    link: "/results",
   },
 ];
 
@@ -27,15 +37,14 @@ export const Sidebar: FC<{ children: ReactElement }> = ({ children }) => {
   const { setUser, setAuthToken, user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const MenuItems = useMemo(
-    () =>
-      SidebarNavs.map((nav) => ({
-        key: nav.link,
-        label: <div className="text-xs">{nav.title}</div>,
-        onClick: () => navigate(nav.link),
-      })),
-    [],
-  );
+  const MenuItems = useMemo(() => {
+    const allNavs = user?.role === "doctor" ? DoctorNavs : PatientNavs;
+    return [...SidebarNavs, ...allNavs].map((nav) => ({
+      key: nav.link,
+      label: <div className="text-xs">{nav.title}</div>,
+      onClick: () => navigate(nav.link),
+    }));
+  }, []);
 
   const logOut = useCallback(() => {
     setUser(null), setAuthToken(null), navigate("/authorization");

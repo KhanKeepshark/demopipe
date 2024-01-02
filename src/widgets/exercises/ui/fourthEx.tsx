@@ -16,6 +16,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   const [anotherLeg, setAnotherLeg] = useState(0);
   const [checkLegAngle, setCheckLegAngle] = useState(0);
   const { isMobile } = useContext(ExerciseContext);
+  const [percent, setPercent] = useState(0);
 
   // left
   const leftBodyPartLists: BodyPartLists[] = useMemo(
@@ -30,6 +31,9 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
           setLandmarks,
         },
         invisible: true,
+        maxValue: 90,
+        minValue: 180,
+        setPercent: setPercent,
       },
       {
         point1: 23,
@@ -87,6 +91,9 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
         point2: 24,
         point3: 30,
         setAngle: setBodyAngle,
+        maxValue: 90,
+        minValue: 180,
+        setPercent: setPercent,
         getlandmarks: {
           landmarks: [0, 30],
           setLandmarks,
@@ -161,6 +168,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       right
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
+      percent={percent}
     />
   ) : (
     <Exercise
@@ -176,6 +184,7 @@ export const FourthEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
       videoModel={FourthExVideo}
       exerciseCycleCondition={exerciseCycleCondition}
       exercisePlayCondition={exercisePlayCondition}
+      percent={percent}
     />
   );
 };

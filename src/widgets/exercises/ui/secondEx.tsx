@@ -135,7 +135,7 @@ export const SecondEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
   // all
   const exerciseCycleCondition = useMemo(
     () => [
-      checkLegAngle < 70 && anotherLeg < 70,
+      checkLegAngle < 120 && anotherLeg < 120,
       checkLegAngle > 170 && anotherLeg > 170,
     ],
     [checkLegAngle, anotherLeg],

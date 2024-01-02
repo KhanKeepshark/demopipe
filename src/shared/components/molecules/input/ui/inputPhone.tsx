@@ -1,7 +1,7 @@
 import { PatternFormat } from "react-number-format";
 
-import { FC } from "react";
-import { InputPhoneProps } from "../models/InputPhoneProps";
+import type { FC } from "react";
+import type { InputPhoneProps } from "../models/InputPhoneProps";
 import clsx from "clsx";
 
 export const InputPhone: FC<InputPhoneProps> = ({
@@ -19,7 +19,7 @@ export const InputPhone: FC<InputPhoneProps> = ({
     >
       <div className="border py-1 px-3 rounded-md border-secondary">
         <PatternFormat
-          className="text-Regular16 placeholder:text-secondary focus:border-0 focus-visible:border-0 focus-visible:outline-none group"
+          className="text-Regular14 placeholder:text-Regular14 placeholder:text-md focus:border-0 focus-visible:border-0 focus-visible:outline-none group"
           format="+7 (###) ### ## ##"
           onChange={(event) => onChange(event)}
           mask="_"

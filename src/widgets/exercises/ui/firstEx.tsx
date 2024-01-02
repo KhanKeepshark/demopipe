@@ -120,7 +120,7 @@ export const FirstEx: FC<OrderExerciseProps> = ({ setResults, setFinish }) => {
 
   // all
   const exerciseCycleCondition = useMemo(
-    () => [checkLegAngle < 70, checkLegAngle > 170],
+    () => [checkLegAngle < 120, checkLegAngle > 170],
     [checkLegAngle],
   );
 

@@ -11,23 +11,23 @@ import { UserContext } from "@/shared/contexts";
 const InputsData = [
   {
     title: "ИМЯ",
-    placeholder: "Андрей",
+    placeholder: "Введите ваше имя",
   },
   {
     title: "ФАМИЛИЯ",
-    placeholder: "Андрей",
+    placeholder: "Введите вашу фамилию",
   },
   {
     title: "ПОЧТА",
-    placeholder: "Андрей",
+    placeholder: "Введите вашу почту",
   },
   {
     title: "ГОРОД",
-    placeholder: "Андрей",
+    placeholder: "Введите ваш город",
   },
   {
     title: "ПАРОЛЬ",
-    placeholder: "Андрей",
+    placeholder: "Введите ваш пароль",
   },
 ];
 

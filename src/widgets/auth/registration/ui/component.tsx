@@ -70,17 +70,14 @@ export const RegistrationWidget: FC = () => {
         <Controller
           control={control}
           name="email"
-          rules={{ required: "Введите почту" }}
           render={({ field }) => (
             <Input
               className="mt-3 border-black"
               placeholder="ЭЛЕКТРОННАЯ ПОЧТА"
-              errorMessage={errors?.email?.message}
               {...field}
             />
           )}
         />
-
         <Controller
           control={control}
           name="phoneNum"
