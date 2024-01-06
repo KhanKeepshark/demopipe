@@ -3,7 +3,7 @@ import { getAuthToken, setAuthToken, setRefreshToken } from "../utils/api";
 import { authApi } from "./authApi";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "http://185.100.67.236:5000",
 });
 
 // for multiple requests
